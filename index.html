@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .col-2-vertical {
+            /*float: left;*/
+            width: 60%;
+            height: 150px; 
+            line-height: 160px; 
+            background-color: #ffdbdb;
+            border: 3px solid #000000;
+            border-radius: 7px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .col {
+            margin-left: 20%;
+            margin-right: 20%;
+            margin-top: 0%;
+            margin-bottom: 5%;
+        }
+        @media ( max-width: 768px ) {
+            .col-2-vertical {
+                background-color: orange;
+                margin-top: -10px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="bulma/css/bulma.css"/>
+    <title>runningback_main</title>
+</head>
+<body id="body">
+    <section class="section">
+        <div class="container">
+            <div class="content has-text-centered">
+                <h1 class="title is-3 is-italic">Run, Running Back!</h1>
+                <h5 class="subtitle has-text-grey is-italic">Your mission is run as fast as you can.
+                Tab the screen with two fingers alternatively.</h5>
+            </div>
+        </div>
+    </section>
+
+    <!-- When single clicking/touching, voice comes out -->
+    <!-- When double clicking/touching, move to play.html page -->
+    <!-- Problem: Have to find a way to distinguish between single click and
+    double click -->
+    <div class="col-2-vertical col" id="play"> 
+        <span class="title is-2 is-black has-text-weight-normal">
+            Play Game
+        </span>
+    </div>
+    <div class="col-2-vertical col" id="tutorial">
+        <span class="title is-2 is-black has-text-weight-normal">
+            Tutorial
+        </span>
+    </div>
+    <script src="./index_.js"></script>
+</body>
+</html>

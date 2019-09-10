@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .col-vertical1 {
+            float: left;
+            text-align: left;
+            height: 100px;
+            margin-top: 50px;
+            text-align: center;
+        }
+        #back {
+            width: 10%;
+            margin-left: 4%;
+            border: 3px solid #000000;
+            border-radius: 7px;
+            padding-top: 35px;
+            background-color: gray;
+        }
+        #text {
+            width: 64%;
+            margin-left: 4%;
+            padding-top: 20px;
+            border: 3px solid #000000;
+        }
+        .col-vertical2 {
+            float: left;
+            width: 44%;
+            height: 500px;
+            line-height: 480px; 
+            background-color: #ffdbdb;
+            border: 3px solid #000000;
+            border-radius: 7px;
+            box-sizing: border-box;
+            text-align: center;
+            margin-top: 3%;
+        }
+        #col-left {
+            margin-left: 4%;
+            margin-right: 2%;
+        }
+        #col-right {
+            margin-left: 2%;
+            margin-right: 4%;
+        }
+        @media ( max-width: 768px ) {
+            .col-vertical2 {
+                background-color: orange;
+                height: 400px; 
+                line-height: 380px;
+                margin-top: 4%; 
+            }
+            .col-vertical1 {
+                margin-top: 30px;
+            }
+            #text {
+                padding-top: 10px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="bulma/css/bulma.css"/>
+    <title>runningback_play</title>
+</head>
+<body id="body">
+    <div class="col-vertical1" id="back">
+        <h1 class="title is-6">Back</h1>
+    </div>
+    <div class="col-vertical1" id="text" onclick="alert('Pause')">
+        <h1 class="title is-4 is-italic">Run, Running Back!</h1>
+        <h5 class="subtitle is-6 has-text-grey is-italic">
+            Your mission is run as fast as you can.
+            Tab the screen with two fingers alternatively.
+        </h5>
+    </div>
+
+    <div class="col-vertical2" id="col-left" onclick="alert('Left Foot')">
+        <span class="title is-2 has-text-weight-normal">
+            Left Foot
+        </span>
+    </div>
+    <div class="col-vertical2" id="col-right" onclick="alert('Right Foot')">
+        <span class="title is-2 has-text-weight-normal">
+            Right Foot
+        </span>
+    </div>
+
+    <script src="./play_.js"></script>
+
+</body>
+</html>
