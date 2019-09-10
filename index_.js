@@ -8,6 +8,22 @@ let t1 = document.getElementById('play');
 // Single-click occurs if click is done once
 // Double-click occurs if click is done twice within 0.2 sec.
 var DELAY = 200, clicks = 0, timer = null;
+function playHandler (e) {
+    clicks++;  //count clicks
+    if(clicks === 1) {
+        timer = setTimeout(function() {
+            speechSynthesis.speak(voice1);  //perform single-click action    
+            clicks = 0;                     //after action performed, reset counter
+        }, DELAY);
+    } 
+    else {
+        clearTimeout(timer);                //prevent single-click action
+        location.href= 'play.html';         //perform double-click action
+        speechSynthesis.speak(voice3);      //perform double-click action
+        clicks = 0;                         //after action performed, reset counter
+    }
+}
+/*
 t1.addEventListener('click', function(){
     clicks++;  //count clicks
     if(clicks === 1) {
@@ -23,17 +39,21 @@ t1.addEventListener('click', function(){
         clicks = 0;                         //after action performed, reset counter
     }
 });
+*/
+
+
+t1.addEventListener('click', playHandler);
 t1.addEventListener('dblclick', function(e){
     e.preventDefault();  //cancel system double-click event
 });
+t1.addEventListener("touchend", playHandler, false);
 
 
-
-
-t1.addEventListener("touchend", handlerFunction, false);
+/*
 function handlerFunction(event) {
     alert("touch worked!");
 };
+*/
 
 
 
