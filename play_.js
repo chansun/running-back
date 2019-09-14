@@ -62,9 +62,22 @@ let count = 0;
 $("#col-left").click(function(e) {
     count += 1;
 });
+/*
 $("#col-right").click(function(e) {
     count += 1;
 });
+*/
+$("#col-right").bind("touchstart",function(e){
+	e.preventDefault();
+	count += 1;
+});   
+
+//t1.addEventListener("touchstart", playHandler, false);
+/*
+function handlerFunction(event) {
+    alert("touch worked!");
+};
+*/
 
 timerId = setInterval(function() {
     let speed = $("#speed");
@@ -81,8 +94,6 @@ $("#text").click(function(e) {
     count = 0;
     speed.append(count + "/sec");
 });
-
-
 
 
 
