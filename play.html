@@ -67,7 +67,7 @@
     <div class="col-vertical1" id="back">
         <h1 class="title is-6">Back</h1>
     </div>
-    <div class="col-vertical1" id="text" onclick="alert('Pause')">
+    <div class="col-vertical1" id="text">
         <h1 class="title is-4 is-italic">Run, Running Back!</h1>
         <h5 class="subtitle is-6 has-text-grey is-italic">
             Your mission is run as fast as you can.
@@ -75,18 +75,23 @@
         </h5>
     </div>
 
-    <div class="col-vertical2" id="col-left" onclick="alert('Left Foot')">
+    <div>
+        Speed: <span id="speed">10</span>
+    </div>
+
+    <div class="col-vertical2" id="col-left">
         <span class="title is-4 has-text-weight-normal">
             Left Foot
         </span>
     </div>
-    <div class="col-vertical2" id="col-right" onclick="alert('Right Foot')">
+    <div class="col-vertical2" id="col-right">
         <span class="title is-4 has-text-weight-normal">
             Right Foot
         </span>
     </div>
 
-    <script src="./play_.js"></script>
-
+    <script src="./jquery/dist/jquery.js" type="text/javascript"></script>
+    <script src="./play_.js" type="text/javascript"></script>
+    <!-- <script src="./play_.js" type="text/javascript"></script> --->
 </body>
 </html>
