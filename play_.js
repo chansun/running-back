@@ -59,11 +59,13 @@ t3.addEventListener('keyup', bodyHandler);
 
 
 let count = 0;
+
 /*
 $("#col-left").click(function(e) {
     count += 1;
 });
 */
+
 $("#col-left").bind("touchstart",function(e){
 	e.preventDefault();
 	count += 1;
