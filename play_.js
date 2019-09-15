@@ -5,7 +5,7 @@ voice1.volume = 1.0;
 voice1.rate = 0.9;
 /* sleep for 2 sec, and then speak */
 setTimeout(function() {
-    speechSynthesis.speak(voice1);
+    //speechSynthesis.speak(voice1);
 }, 2000);
 
 
@@ -55,37 +55,15 @@ function bodyHandler (e) {
 };
 t3.addEventListener('keyup', bodyHandler);
 
-
-
-
 let count = 0;
-
-/*
-$("#col-left").click(function(e) {
-    count += 1;
-});
-*/
-
 $("#col-left").bind("touchstart",function(e){
 	e.preventDefault();
 	count += 1;
 });   
-/*
-$("#col-right").click(function(e) {
-    count += 1;
-});
-*/
 $("#col-right").bind("touchstart",function(e){
 	e.preventDefault();
 	count += 1;
 });   
-
-//t1.addEventListener("touchstart", playHandler, false);
-/*
-function handlerFunction(event) {
-    alert("touch worked!");
-};
-*/
 
 timerId = setInterval(function() {
     let speed = $("#speed");
@@ -101,6 +79,22 @@ $("#text").click(function(e) {
     speed.empty();
     count = 0;
     speed.append(count + "/sec");
+});
+
+
+
+let audio = new Audio('/assets/bgm/Lipps_Inc_Funky_Town.mp3');
+function play() {
+    if (audio.paused) {
+        audio.play()
+    }
+    else {
+        audio.pause()
+    }
+}
+// audio test!
+$("#col-left").click(function(e) {
+    play()
 });
 
 

@@ -3,7 +3,7 @@
 * Pages
     * main page
     * play page
-    
+
 * User interaction
     * keyboard
     * touchscreen
@@ -11,7 +11,7 @@
 
 * JS
     * touchEvent()
-    * Web Audio API - AudioContext() - not recommended
+    * Web Audio API - AudioContext() - difficult but useful
     * howler.js - recommended
         * https://howlerjs.com
     * motion event??
@@ -47,7 +47,7 @@
             createjs.Sound.play("sound2");
         </script>
         ```
-    
+
 * Voice Generator (for audio instruction)
     * SpeechSynthesisUtterance()
         ```HTML
@@ -60,7 +60,37 @@
         </script>
         ```
 * Prof. Gary've got a nice microphone for recording voice/sound effects when needed.
-
 * Prof. Gary can provide URLs when "asset" should be added to fetch an audio file.
-
 * Use github server for a static web app
+
+
+* To do list
+    * Body image
+        * Football field image?
+    * Footer content adjustment
+    * Bulma Navbar? (vertical or horizontal?)
+        * On Play Page: Back + Setting
+        * On Main Page: Play + Tutorial + Ranking/High Scores + About(about UNC CS dept)
+    * Bulma layout-tile <- let's not use this
+    * Sound effect // Audio sprite // Web Audio
+        * Loudness control
+            * GainNode of Web Audio
+                * https://developer.mozilla.org/en-US/docs/Web/API/GainNode
+        * Sound comes from left speaker then right speaker..
+            * StereoPannerNode of Web Audio
+                * https://developer.mozilla.org/en-US/docs/Web/API/StereoPannerNode
+    * Sound files
+        * Youtube mp3 converter
+            * https://www.mp3juices.cc
+        * Youtube videos
+        * Football sounds
+            * https://www.youtube.com/playlist?list=PLmQKipmpxnU-PeGBCblggCOO3jlaM_Q90
+            * https://www.youtube.com/playlist?list=OLAK5uy_mTrreG1MTgCAFn2RFK3lq1fAVl5AACm20
+        * Miscellaneous sound effect
+            * https://www.youtube.com/watch?v=BWtlm-9ISig&list=PLTj7nGn3ICvOXL5tbsSbE5YQ9f0UGoYoB&index=2
+        * Running Sounds
+            * https://www.youtube.com/watch?v=dIPEKhZOkcU&list=PLTj7nGn3ICvOXL5tbsSbE5YQ9f0UGoYoB&index=4
+            * https://www.youtube.com/watch?v=oNxnum6g3Lc&list=PLTj7nGn3ICvOXL5tbsSbE5YQ9f0UGoYoB&index=2&t=0s
+        * Background music
+            * https://www.youtube.com/playlist?list=PLTj7nGn3ICvMMLqxkZvqJ_10bPutK5wgN
+    * What else?

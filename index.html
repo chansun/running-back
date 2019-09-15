@@ -4,23 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-
-        /*
-        To do list
-        1. Body image
-        2. Footer adjustment
-        3. Bulma Navbar?
-        4. Bulma layout-tile
-        ---
-        5. Sound effect // Audio sprite
-        6. Sound files
-
-        
-        
-        */
-
-
-
         /*
         body {
             background-image: url("imgs/img1.jpg");
@@ -28,40 +11,26 @@
             background-size: 100%;
         }
         */
-
         .col-2-vertical {
             /*float: left;*/
             width: 60%;
             height: 150px; 
             line-height: 160px; 
-            background-color: #595749;
+            background-color: #d6856a;
             /*border: 3px solid #000000;*/
             border-radius: 5px;
             box-sizing: border-box;
-            text-align: center;
+            margin: 0% 20% 5% 20%;
+            /* top right bottom left */
         }
-        .col {
-            margin-left: 20%;
-            margin-right: 20%;
-            margin-top: 0%;
-            margin-bottom: 5%;
-        }
+        
         @media ( max-width: 768px ) {
             .col-2-vertical {
-                background-color: orange;
+                /*background-color: orange;*/
                 margin-top: -10px;
+                margin-bottom: 40px;
             }
         }
-        .columns {
-            padding: 0% 10% 0% 10%;
-        }
-        .column {
-            margin-left: 5%;
-            margin-right: 5%;
-        }
-        
-        
-        
     </style>
     <link rel="stylesheet" href="bulma/css/bulma.css"/>
     <!-- <link rel="stylesheet" href="node_modules/bulma/css/bulma.css"/> -->
@@ -70,20 +39,20 @@
 <body id="body">
     <section class="hero is-dark is-bold is-fullheight"> <!-- is-primary -->
         <div class="hero-body">
-            <div class="container">
-                <div class="content has-text-centered">
+            <div class="container has-text-centered">
+                <div class="content">
                     <h1 class="title is-3 is-italic">Run, Running Back!</h1>
                     <h5 class="subtitle has-text-grey is-italic">Your mission is run as fast as you can.
                     Tab the screen with two fingers alternatively.</h5>
                 </div>
                 <br><br>
-                <div class="col-2-vertical col" id="play"> 
-                    <span class="title is-2 is-black has-text-weight-normal">
+                <div class="col-2-vertical" id="play"> 
+                    <span class="title is-2 has-text-weight-normal">
                         Play Game
                     </span>
                 </div>
-                <div class="col-2-vertical col" id="tutorial">
-                    <span class="title is-2 is-black has-text-weight-normal">
+                <div class="col-2-vertical" id="tutorial">
+                    <span class="title is-2 has-text-weight-normal">
                         Tutorial
                     </span>
                 </div>
@@ -102,7 +71,6 @@
             </div>
         </footer>
     </section>
-
     <!--
     <section class="section">
         <div class="container">
