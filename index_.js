@@ -9,6 +9,7 @@ $(document).ready(function () {
         event.stopPropagation();
     }
 
+    /*
     createjs.Sound.initializeDefaultPlugins();
     var assetsPath = "./assets/bgm/";
     var sounds = [{
@@ -20,6 +21,7 @@ $(document).ready(function () {
     ];
     createjs.Sound.registerSounds(sounds, assetsPath);
     createjs.Sound.play("sound1");
+    */
 
     let sound1 = "Play Game";
     const voice1 = new SpeechSynthesisUtterance(sound1);
