@@ -9,6 +9,18 @@ $(document).ready(function () {
         event.stopPropagation();
     }
 
+    createjs.Sound.initializeDefaultPlugins();
+    var assetsPath = "./assets/bgm/";
+    var sounds = [{
+        src:"track3.mp3", data: {
+            audioSprite: [
+                {id:"sound1", startTime:0, duration:150000}
+            ]}
+        }
+    ];
+    createjs.Sound.registerSounds(sounds, assetsPath);
+    createjs.Sound.play("sound1");
+
     let sound1 = "Play Game";
     const voice1 = new SpeechSynthesisUtterance(sound1);
     voice1.pitch = 1.0;
