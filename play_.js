@@ -9,6 +9,7 @@ $(document).ready(function () {
         event.stopPropagation();
     }
 
+    /* Playing music on page load doesn't work in this way
     createjs.Sound.initializeDefaultPlugins();
     var assetsPath = "./assets/sound_effects/";
     var sounds = [{
@@ -20,7 +21,8 @@ $(document).ready(function () {
     ];
     createjs.Sound.registerSounds(sounds, assetsPath);
     createjs.Sound.play("sound1");
-  
+    */
+
     let sound1 = "Your mission is run as fast as you can; Tab the screen with two fingers alternatively."
     const voice1 = new SpeechSynthesisUtterance(sound1);
     voice1.pitch = 1.0;
@@ -190,7 +192,3 @@ $(document).ready(function () {
 
 
 });
-
-
-
-

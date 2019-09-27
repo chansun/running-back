@@ -22,7 +22,7 @@
             float: left;
             width: 44%;
             height: 250px;
-            line-height: 250px; 
+            line-height: 250px;
             background-color: hsl(141, 71%, 48%);
             /*border: 3px solid #000000;*/
             border-radius: 7px;
@@ -43,6 +43,12 @@
     <title>runningback_play</title>
 </head>
 <body class="disable-select" id="body">
+    <audio src="./assets/sound_effects/cheering1.mp3" id="my_audio" loop="loop"></audio>
+    <script type="text/javascript">
+        window.onload=function(){
+            document.getElementById("my_audio").play();
+        }
+    </script>
     <section class="hero is-dark is-bold is-fullheight"> <!-- is-primary -->
         <div class="hero-body">
             <div class="container has-text-centered">
@@ -69,8 +75,8 @@
                 </div>
                 <div style="visibility:hidden" class="empty_space title is-6">
                         ---
-                </div>          
-                <footer class="has-text-centered has-text-weight-bold subtitle is-7"> 
+                </div>
+                <footer class="has-text-centered has-text-weight-bold subtitle is-7">
                     <small>
                         &copy; 2019 by
                         <a href="https://cs.unc.edu">
@@ -83,7 +89,7 @@
                 </div>
             </div>
         </div>
-        
+
     </section>
     <script src="https://code.createjs.com/createjs-2015.05.21.min.js"></script>
     <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
