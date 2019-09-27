@@ -4,35 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        .col-vertical1 {
-            float: left;
-            text-align: left;
-            height: 100px;
-            /*margin-top: 50px;*/
-            text-align: center;
+        html {
+            overflow: hidden;
         }
+        body {
+            overflow: hidden;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+        /*
         #back {
-            width: 15%;
-            margin-left: 4%;
-            /*border: 3px solid #000000;*/
-            border-radius: 5px;
-            padding-top: 35px;
-            background-color: gray;
+            border: 3px solid white;
         }
-        #text {
-            width: 64%;
-            margin-left: 4%;
-            padding-top: 20px;
-            border: 3px solid #000000;
-        }
+        */
         .col-vertical2 {
             float: left;
             width: 44%;
-            height: 400px;
-            line-height: 400px; 
-            background-color: #d6856a;
+            height: 250px;
+            line-height: 250px; 
+            background-color: hsl(141, 71%, 48%);
             /*border: 3px solid #000000;*/
-            border-radius: 5px;
+            border-radius: 7px;
             box-sizing: border-box;
             text-align: center;
             margin-top: 3%;
@@ -45,96 +38,58 @@
             margin-left: 2%;
             margin-right: 4%;
         }
-        @media ( max-width: 768px ) {
-            /*
-            .col-vertical2 {
-                background-color: orange;
-                height: 400px; 
-                line-height: 400px;
-                margin-top: 2%; 
-            }
-            */
-            /*
-            .col-vertical1 {
-                margin-top: 30px;
-            }
-            #text {
-                padding-top: 10px;
-            }
-            */
-        }
-        footer{ position:fixed; 
-            /*border: 3px solid #000000;*/
-            left:0px; 
-            bottom:0px; 
-            height:30px; 
-            width:100%; 
-            background: white;
-            color: grey;
-        }
     </style>
     <link rel="stylesheet" href="bulma/css/bulma.css"/>
     <title>runningback_play</title>
 </head>
-<body id="body">
-
-
+<body class="disable-select" id="body">
     <section class="hero is-dark is-bold is-fullheight"> <!-- is-primary -->
         <div class="hero-body">
             <div class="container has-text-centered">
-                <div class="col-vertical1" id="back">
-                    <h1 class="title is-6">Back</h1>
-                </div>
-                
-                <div class="col-vertical1" id="text">
-                    <!--
-                    <h1 class="title is-4 is-italic">Run, Running Back!</h1>
-                    <h5 class="subtitle is-6 has-text-grey is-italic">
+                <div class="content"  id="back">
+                    <h1 class="title is-italic is-4">
+                        Run, Running Back!
+                    </h1>
+                    <h5 class="subtitle has-text-grey is-italic is-6">
                         Your mission is run as fast as you can.
                         Tab the screen with two fingers alternatively.
                     </h5>
-                    -->
                 </div>
-                
-                <div>
-                    Speed: <span id="speed">0/sec</span>
+                <div class="content">
+                    <div class="col-vertical2" id="col-left">
+                        <span class="title is-5 has-text-weight-bold">
+                            Left Foot
+                        </span>
+                    </div>
+                    <div class="col-vertical2" id="col-right">
+                        <span class="title is-5 has-text-weight-bold">
+                            Right Foot
+                        </span>
+                    </div>
                 </div>
-                
-                <div class="col-vertical2" id="col-left">
-                    <span class="title is-3 has-text-weight-normal">
-                        Left Foot
-                    </span>
-                </div>
-                <div class="col-vertical2" id="col-right">
-                    <span class="title is-3 has-text-weight-normal">
-                        Right Foot
-                    </span>
-                </div>
-                <footer class="test"> 
-                        <small>
-                            &copy; 2019 by
-                            <a href="https://cs.unc.edu">
-                                the Department of Computer Science at UNC-Chapel Hill
-                            </a>
-                        </small>
-                </footer>
-            </div>
-        </div>
-        <!--
-        <footer class="footer">
-            <div class="content has-text-centered has-text-dark">
-                <p>
+                <div style="visibility:hidden" class="empty_space title is-6">
+                        ---
+                </div>          
+                <footer class="has-text-centered has-text-weight-bold subtitle is-7"> 
                     <small>
                         &copy; 2019 by
                         <a href="https://cs.unc.edu">
                             the Department of Computer Science at UNC-Chapel Hill
                         </a>
                     </small>
-                </p>
+                </footer>
+                <div style="visibility:hidden" class="empty_space title is-6">
+                        ---
+                </div>
             </div>
-        </footer>
-        -->
+        </div>
+        
     </section>
+    <script src="https://code.createjs.com/createjs-2015.05.21.min.js"></script>
+    <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+    <script src="https://code.createjs.com/tweenjs-0.6.1.min.js"></script>
+    <script src="https://code.createjs.com/1.0.0/soundjs.min.js"></script>
+    <script src="https://code.createjs.com/preloadjs-0.6.2.min.js"></script>
     <script src="./jquery/dist/jquery.js" type="text/javascript"></script>
     <script src="./play_.js" type="text/javascript"></script>
     <script src="./play_sound.js" type="text/javascript"></script>

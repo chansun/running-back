@@ -32,9 +32,11 @@ $(document).ready(function () {
             clicks = 0;                         //after action performed, reset counter
         }
     }
+    
     $('#play').on('click', playHandler);
     $('#play').on('dblclick', function(e) {
         e.preventDefault();  //cancel system double-click event
+        alert("hi");
     });
 
     let sound2 = "Tutorial";
@@ -72,5 +74,5 @@ $(document).ready(function () {
     };
     $('#body').on('keyup', bodyHandler);*/
     
-
+    
 });
