@@ -1,14 +1,14 @@
 $(document).ready(function () {
 
     window.addEventListener("scroll", preventMotion, false);
-    window.addEventListener("touchmove", preventMotion, false);
+    //window.addEventListener("touchmove", preventMotion, false);
     function preventMotion(event)
     {
         window.scrollTo(0, 0);
         event.preventDefault();
         event.stopPropagation();
     }
-    
+
     let sound1 = "Play Game";
     const voice1 = new SpeechSynthesisUtterance(sound1);
     voice1.pitch = 1.0;
