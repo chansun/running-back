@@ -33,10 +33,10 @@ $(document).ready(function () {
         clicks++;  //count clicks
         if(clicks === 1) {
             timer = setTimeout(function() {
-                speechSynthesis.speak(voice1);  //perform single-click action    
+                speechSynthesis.speak(voice1);  //perform single-click action
                 clicks = 0;                     //after action performed, reset counter
             }, DELAY);
-        } 
+        }
         else {
             clearTimeout(timer);                //prevent single-click action
             location.href= 'play.html';         //perform double-click action
@@ -44,11 +44,10 @@ $(document).ready(function () {
             clicks = 0;                         //after action performed, reset counter
         }
     }
-    
+
     $('#play').on('click', playHandler);
     $('#play').on('dblclick', function(e) {
         e.preventDefault();  //cancel system double-click event
-        alert("hi");
     });
 
     let sound2 = "Tutorial";
@@ -71,7 +70,7 @@ $(document).ready(function () {
     };
     $('#high_scores').on('click', high_scoresHandler);
 
-    
+
     let sound4 = "Play Page";
     const voice4 = new SpeechSynthesisUtterance(sound4);
     voice4.pitch = 1.0;
@@ -85,6 +84,6 @@ $(document).ready(function () {
         }
     };
     $('#body').on('keyup', bodyHandler);*/
-    
-    
+
+
 });
