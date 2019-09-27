@@ -45,12 +45,15 @@ $(document).ready(function () {
     voice3.pitch = 1.0;
     voice3.volume = 1.0;
     voice3.rate = 1.0;
+    /*
     function bodyHandler (e) {
         if (e.keyCode == 37) {
             location.href= 'index.html';
             speechSynthesis.speak(voice3);
         }
     };
+    $('#body').on('keyup', bodyHandler);
+    */
 
     // Single-click occurs if click is done once
     // Double-click occurs if click is done twice within 0.2 sec.
@@ -75,11 +78,10 @@ $(document).ready(function () {
         e.preventDefault();  //cancel system double-click event
     });
 
-    $('#body').on('keyup', bodyHandler);
+    
 
 
     let count = 0;
-    let running_now = false;
 
     createjs.Sound.initializeDefaultPlugins();
     var assetsPath = "./assets/sound_effects/";
@@ -96,21 +98,50 @@ $(document).ready(function () {
     var sounds2 = [{
         src:"cheering1.mp3", data: {
             audioSprite: [
-                {id:"cheering1", startTime:0, duration:15000},
+                {id:"cheering1", startTime:0, duration:34000},
             ]}
         }
     ];
     createjs.Sound.registerSounds(sounds, assetsPath);
     createjs.Sound.registerSounds(sounds2, assetsPath);
     createjs.Sound.volume = 1;
-    //createjs.Sound.play("cheering1");
+
+
+
+    let running_now = false;
+
+
+    let running = new Audio("./assets/sound_effects/running_grass1.mp3");
+    running.loop = true;
+    running.playbackRate = 1.30;
+
+    let breathing = new Audio("./assets/sound_effects/breathing.mp3");
+    breathing.loop = true;
+    breathing.volume = 1.0;
+
+    let cheering = new Audio("./assets/sound_effects/cheering1.mp3");
+    cheering.loop = true;
+    cheering.playbackRate = 1.0;
+    cheering.volume = 0.01;
+
+    let tackle_grunt = new Audio("./assets/sound_effects/tackle_grunt1.mp3");
+    tackle_grunt.volume = 0.3;
+
 
     $('#col-left').on('click', function (e) { // 'click' is for just test. Remove this later
         e.preventDefault();
         count += 1;
-        running_now = true;
         //createjs.Sound.play("sound4");
-        createjs.Sound.play("cheering1");
+        //createjs.Sound.play("cheering1");
+        running_now = true;
+        if (running.currentTime > 18.0) {
+            running.currentTime = 0.8;
+        }
+        running.play();
+        if (breathing.currentTime > 18.0) {
+            breathing.currentTime = 0.8;
+        }
+        breathing.play();  
     });
     $("#col-left").on("touchstart",function(e){
         e.preventDefault();
@@ -119,15 +150,44 @@ $(document).ready(function () {
     $('#col-right').on('click', function (e) {  // 'click' is for just test. Remove this later
         e.preventDefault();
         count += 1;
+        running_now = true;
+        if (running.currentTime > 18.0) {
+            running.currentTime = 0.8;
+        }
+        running.play();
+        if (breathing.currentTime > 18.0) {
+            breathing.currentTime = 0.8;
+        }
+        breathing.play();
     });
     $("#col-right").on("touchstart",function(e){
         e.preventDefault();
         count += 1;
     });
 
-    timerId = setInterval(function() {
+ 
+
+    let timerId = setInterval(function() {
+        /*
         if (running_now) {
-            createjs.Sound.play("sound3");
+            //createjs.Sound.play("sound3");
+            //alert("hi");
+            audio.play();
+        }*/
+        if (!running_now) {
+            stop();
+            //alert("stop!");
+            running.pause();
+            breathing.pause();
+            running.currentTime = 0.8;
+            breathing.currentTime = 0.8;
+
+            /*tackle_grunt.play();
+            takcle.currentTime = 0.0;*/
+
+            //takcle.currentTime = 0.8;
+            //tackle_grunt.pause();
+            //alert("Game Over");
         }
         let speed = $("#speed");
         speed.empty();
@@ -135,16 +195,35 @@ $(document).ready(function () {
         count = 0;
         running_now = false;
     }, 2000);
+    
+    
+    
 
-    $("#text").click(function(e) {
+    /*
+    $("#back").click(function(e) {
         clearInterval(timerId);
         alert("pause");
+        cheering.pause();
         let speed = $("#speed");
         speed.empty();
         count = 0;
         speed.append(count + "/sec");
     });
+    */
 
+    /*
+    $('#back').on('click', function(e) {
+        play();
+    });
+    function play() {
+        if (cheering.paused) {
+            cheering.play()
+        }
+        else {
+            cheering.pause()
+        }
+    }
+    */
 
 
 

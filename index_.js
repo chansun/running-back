@@ -9,7 +9,8 @@ $(document).ready(function () {
         event.stopPropagation();
     }
 
-    /* Playing music on page load doesn't work in this way
+    /*
+    Playing music on page load doesn't work in this way
     createjs.Sound.initializeDefaultPlugins();
     var assetsPath = "./assets/bgm/";
     var sounds = [{
