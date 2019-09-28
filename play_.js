@@ -1,5 +1,16 @@
 $(document).ready(function () {
 
+
+    let sound_start = "Tab the screen to start"
+    const voice_start = new SpeechSynthesisUtterance(sound_start);
+    voice_start.pitch = 1.0;
+    voice_start.volume = 0.4;
+    voice_start.rate = 0.9;
+    /* sleep for 2 sec, and then speak */
+    setTimeout(function() {
+        speechSynthesis.speak(voice_start);
+    }, 1000);
+
     window.addEventListener("scroll", preventMotion, false);
     //window.addEventListener("touchmove", preventMotion, false);
     function preventMotion(event)
@@ -59,18 +70,20 @@ $(document).ready(function () {
     // Double-click occurs if click is done twice within 0.2 sec.
     var DELAY = 200, clicks = 0, timer = null;
     function backHandler (e) {
-        clicks++;  //count clicks
-        if(clicks === 1) {
-            timer = setTimeout(function() {
-                speechSynthesis.speak(voice2);  //perform single-click action
-                clicks = 0;                     //after action performed, reset counter
-            }, DELAY);
-        }
-        else {
-            clearTimeout(timer);                //prevent single-click action
-            location.href= 'index.html';        //perform double-click action
-            speechSynthesis.speak(voice3);      //perform double-click action
-            clicks = 0;                         //after action performed, reset counter
+        if (!stop) {
+            clicks++;  //count clicks
+            if(clicks === 1) {
+                timer = setTimeout(function() {
+                    speechSynthesis.speak(voice2);  //perform single-click action
+                    clicks = 0;                     //after action performed, reset counter
+                }, DELAY);
+            }
+            else {
+                clearTimeout(timer);                //prevent single-click action
+                location.href= 'index.html';        //perform double-click action
+                speechSynthesis.speak(voice3);      //perform double-click action
+                clicks = 0;                         //after action performed, reset counter
+            }
         }
     };
     $('#back').on('click', backHandler);
@@ -114,51 +127,74 @@ $(document).ready(function () {
     let running = new Audio("./assets/sound_effects/running_grass1.mp3");
     running.loop = true;
     running.playbackRate = 1.30;
+    running.volume = 0.6;
 
     let breathing = new Audio("./assets/sound_effects/breathing.mp3");
     breathing.loop = true;
     breathing.volume = 1.0;
 
+    //-------------------------------------------
+    let bgm = new Audio("./assets/bgm/track3.mp3");
+    bgm.loop = true;
+    bgm.volume = 0.02;
+
     let cheering = new Audio("./assets/sound_effects/cheering1.mp3");
     cheering.loop = true;
-    cheering.playbackRate = 1.0;
-    cheering.volume = 0.01;
+    cheering.volume = 0.03;
+
+    let stop = true;
+ 
+    $('body').on('click', function(e) {
+        if (stop) {
+            bgm.play();
+            cheering.play();
+            //createjs.Sound.play("sound1")
+            stop = false;
+        }
+    });
+    //-------------------------------------------
 
     let tackle_grunt = new Audio("./assets/sound_effects/tackle_grunt1.mp3");
     tackle_grunt.volume = 0.3;
 
 
     $('#col-left').on('click', function (e) { // 'click' is for just test. Remove this later
-        e.preventDefault();
-        count += 1;
-        //createjs.Sound.play("sound4");
-        //createjs.Sound.play("cheering1");
-        running_now = true;
-        if (running.currentTime > 18.0) {
-            running.currentTime = 0.8;
-        }
-        running.play();
-        if (breathing.currentTime > 18.0) {
-            breathing.currentTime = 0.8;
-        }
-        breathing.play();  
+        if (!stop) {
+            e.preventDefault();
+            count += 1;
+            //createjs.Sound.play("sound4");
+            //createjs.Sound.play("cheering1");
+            running_now = true;
+            if (running.currentTime > 18.0) {
+                running.currentTime = 0.8;
+            }
+            running.play();
+            if (breathing.currentTime > 18.0) {
+                breathing.currentTime = 0.8;
+            }
+            breathing.play(); 
+        } 
     });
     $("#col-left").on("touchstart",function(e){
         e.preventDefault();
         count += 1;
     });
     $('#col-right').on('click', function (e) {  // 'click' is for just test. Remove this later
-        e.preventDefault();
-        count += 1;
-        running_now = true;
-        if (running.currentTime > 18.0) {
-            running.currentTime = 0.8;
-        }
-        running.play();
-        if (breathing.currentTime > 18.0) {
-            breathing.currentTime = 0.8;
-        }
-        breathing.play();
+        if (!stop) {
+            e.preventDefault();
+            count += 1;
+            //createjs.Sound.play("sound4");
+            //createjs.Sound.play("cheering1");
+            running_now = true;
+            if (running.currentTime > 18.0) {
+                running.currentTime = 0.8;
+            }
+            running.play();
+            if (breathing.currentTime > 18.0) {
+                breathing.currentTime = 0.8;
+            }
+            breathing.play(); 
+        } 
     });
     $("#col-right").on("touchstart",function(e){
         e.preventDefault();
@@ -175,7 +211,6 @@ $(document).ready(function () {
             audio.play();
         }*/
         if (!running_now) {
-            stop();
             //alert("stop!");
             running.pause();
             breathing.pause();
@@ -194,7 +229,7 @@ $(document).ready(function () {
         speed.append(count + "/sec");
         count = 0;
         running_now = false;
-    }, 2000);
+    }, 1000);
     
     
     

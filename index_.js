@@ -1,5 +1,16 @@
 $(document).ready(function () {
 
+
+    let sound_start = "Tab the screen to start"
+    const voice_start = new SpeechSynthesisUtterance(sound_start);
+    voice_start.pitch = 1.0;
+    voice_start.volume = 0.4;
+    voice_start.rate = 0.9;
+    /* sleep for 2 sec, and then speak */
+    setTimeout(function() {
+        speechSynthesis.speak(voice_start);
+    }, 1000);
+
     window.addEventListener("scroll", preventMotion, false);
     //window.addEventListener("touchmove", preventMotion, false);
     function preventMotion(event)
@@ -9,8 +20,8 @@ $(document).ready(function () {
         event.stopPropagation();
     }
 
-    /*
-    Playing music on page load doesn't work in this way
+    
+    //Playing music on page load doesn't work in this way
     createjs.Sound.initializeDefaultPlugins();
     var assetsPath = "./assets/bgm/";
     var sounds = [{
@@ -22,7 +33,28 @@ $(document).ready(function () {
     ];
     createjs.Sound.registerSounds(sounds, assetsPath);
     createjs.Sound.play("sound1");
-    */
+
+
+    //-------------------------------------------
+    let bgm = new Audio("./assets/bgm/track3.mp3");
+    bgm.loop = true;
+    bgm.volume = 0.05;
+
+    let cheering = new Audio("./assets/sound_effects/cheering1.mp3");
+    cheering.loop = true;
+    cheering.volume = 0.1;
+
+    let stop = true;
+ 
+    $('body').on('click', function(e) {
+        if (stop) {
+            bgm.play();
+            cheering.play();
+            //createjs.Sound.play("sound1")
+            stop = false;
+        }
+    });
+    //-------------------------------------------
 
     let sound1 = "Play Game";
     const voice1 = new SpeechSynthesisUtterance(sound1);
@@ -33,18 +65,20 @@ $(document).ready(function () {
     // Double-click occurs if click is done twice within 0.2 sec.
     var DELAY = 200, clicks = 0, timer = null;
     function playHandler (e) {
-        clicks++;  //count clicks
-        if(clicks === 1) {
-            timer = setTimeout(function() {
-                speechSynthesis.speak(voice1);  //perform single-click action
-                clicks = 0;                     //after action performed, reset counter
-            }, DELAY);
-        }
-        else {
-            clearTimeout(timer);                //prevent single-click action
-            location.href= 'play.html';         //perform double-click action
-            speechSynthesis.speak(voice4);      //perform double-click action
-            clicks = 0;                         //after action performed, reset counter
+        if (!stop) {
+            clicks++;  //count clicks
+            if(clicks === 1) {
+                timer = setTimeout(function() {
+                    speechSynthesis.speak(voice1);  //perform single-click action
+                    clicks = 0;                     //after action performed, reset counter
+                }, DELAY);
+            }
+            else {
+                clearTimeout(timer);                //prevent single-click action
+                location.href= 'play.html';         //perform double-click action
+                speechSynthesis.speak(voice4);      //perform double-click action
+                clicks = 0;                         //after action performed, reset counter
+            }
         }
     }
 
@@ -59,7 +93,9 @@ $(document).ready(function () {
     voice2.volume = 1.0;
     voice2.rate = 1.0;
     function tutorialHandler (e) {
-        speechSynthesis.speak(voice2);
+        if (!stop) {
+            speechSynthesis.speak(voice2);
+        }
     };
     $('#tutorial').on('click', tutorialHandler);
 
@@ -69,7 +105,9 @@ $(document).ready(function () {
     voice3.volume = 1.0;
     voice3.rate = 1.0;
     function high_scoresHandler (e) {
-        speechSynthesis.speak(voice3);
+        if (!stop) {
+            speechSynthesis.speak(voice3);
+        }
     };
     $('#high_scores').on('click', high_scoresHandler);
 
