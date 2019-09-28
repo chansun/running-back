@@ -136,11 +136,11 @@ $(document).ready(function () {
     //-------------------------------------------
     let bgm = new Audio("./assets/bgm/track3.mp3");
     bgm.loop = true;
-    bgm.volume = 0.02;
+    bgm.volume = 0.01;
 
     let cheering = new Audio("./assets/sound_effects/cheering1.mp3");
     cheering.loop = true;
-    cheering.volume = 0.03;
+    cheering.volume = 0.02;
 
     let stop = true;
  
