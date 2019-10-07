@@ -1,16 +1,5 @@
 $(document).ready(function () {
 
-
-    let sound_start = "Tab the screen to start"
-    const voice_start = new SpeechSynthesisUtterance(sound_start);
-    voice_start.pitch = 1.0;
-    voice_start.volume = 0.4;
-    voice_start.rate = 0.9;
-    /* sleep for 2 sec, and then speak */
-    setTimeout(function() {
-        speechSynthesis.speak(voice_start);
-    }, 1000);
-
     window.addEventListener("scroll", preventMotion, false);
     //window.addEventListener("touchmove", preventMotion, false);
     function preventMotion(event)
@@ -20,65 +9,27 @@ $(document).ready(function () {
         event.stopPropagation();
     }
 
-    
-    //Playing music on page load doesn't work in this way
-    createjs.Sound.initializeDefaultPlugins();
-    var assetsPath = "./assets/bgm/";
-    var sounds = [{
-        src:"track3.mp3", data: {
-            audioSprite: [
-                {id:"sound1", startTime:0, duration:150000}
-            ]}
-        }
-    ];
-    createjs.Sound.registerSounds(sounds, assetsPath);
-    createjs.Sound.play("sound1");
-
-
-    //-------------------------------------------
-    let bgm = new Audio("./assets/bgm/track3.mp3");
-    bgm.loop = true;
-    bgm.volume = 0.05;
-
-    let cheering = new Audio("./assets/sound_effects/cheering1.mp3");
-    cheering.loop = true;
-    cheering.volume = 0.1;
-
-    let stop = true;
- 
-    $('body').on('click', function(e) {
-        if (stop) {
-            bgm.play();
-            cheering.play();
-            //createjs.Sound.play("sound1")
-            stop = false;
-        }
-    });
-    //-------------------------------------------
-
     let sound1 = "Play Game";
     const voice1 = new SpeechSynthesisUtterance(sound1);
     voice1.pitch = 1.0;
-    voice1.volume = 1.0;
+    voice1.volume = 0.3;
     voice1.rate = 1.0;
     // Single-click occurs if click is done once
     // Double-click occurs if click is done twice within 0.2 sec.
     var DELAY = 200, clicks = 0, timer = null;
     function playHandler (e) {
-        if (!stop) {
-            clicks++;  //count clicks
-            if(clicks === 1) {
-                timer = setTimeout(function() {
-                    speechSynthesis.speak(voice1);  //perform single-click action
-                    clicks = 0;                     //after action performed, reset counter
-                }, DELAY);
-            }
-            else {
-                clearTimeout(timer);                //prevent single-click action
-                location.href= 'play.html';         //perform double-click action
-                speechSynthesis.speak(voice4);      //perform double-click action
-                clicks = 0;                         //after action performed, reset counter
-            }
+        clicks++;  //count clicks
+        if(clicks === 1) {
+            timer = setTimeout(function() {
+                speechSynthesis.speak(voice1);  //perform single-click action
+                clicks = 0;                     //after action performed, reset counter
+            }, DELAY);
+        }
+        else {
+            clearTimeout(timer);                //prevent single-click action
+            location.href= 'play.html';         //perform double-click action
+            speechSynthesis.speak(voice4);      //perform double-click action
+            clicks = 0;                         //after action performed, reset counter
         }
     }
 
@@ -90,41 +41,26 @@ $(document).ready(function () {
     let sound2 = "Tutorial";
     const voice2 = new SpeechSynthesisUtterance(sound2);
     voice2.pitch = 1.0;
-    voice2.volume = 1.0;
+    voice2.volume = 0.3;
     voice2.rate = 1.0;
     function tutorialHandler (e) {
-        if (!stop) {
-            speechSynthesis.speak(voice2);
-        }
+        speechSynthesis.speak(voice2);
     };
     $('#tutorial').on('click', tutorialHandler);
 
     let sound3 = "High Scores";
     const voice3 = new SpeechSynthesisUtterance(sound3);
     voice3.pitch = 1.0;
-    voice3.volume = 1.0;
+    voice3.volume = 0.3;
     voice3.rate = 1.0;
     function high_scoresHandler (e) {
-        if (!stop) {
-            speechSynthesis.speak(voice3);
-        }
+        speechSynthesis.speak(voice3);
     };
     $('#high_scores').on('click', high_scoresHandler);
-
 
     let sound4 = "Play Page";
     const voice4 = new SpeechSynthesisUtterance(sound4);
     voice4.pitch = 1.0;
-    voice4.volume = 1.0;
+    voice4.volume = 0.3;
     voice4.rate = 1.0;
-    /*
-    function bodyHandler (e) {
-        if (e.keyCode == 39) {
-            location.href= 'play.html';
-            speechSynthesis.speak(voice4);
-        }
-    };
-    $('#body').on('keyup', bodyHandler);*/
-
-
 });
