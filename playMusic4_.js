@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    /*
     let sound3 = "Main Page";
     const voice3 = new SpeechSynthesisUtterance(sound3);
     voice3.pitch = 1.0;
@@ -17,20 +18,16 @@ $(document).ready(function () {
                 }, DELAY);
             }
             else {
-                
+
                     clearTimeout(timer);                //prevent single-click action
                     location.href= 'index.html';         //perform double-click action
                     speechSynthesis.speak(voice3);      //perform double-click action
                     clicks = 0;                         //after action performed, reset counter
-                
+
             }
         }
     }
-
-    $('body').on('keydown', backToMain);
-
-
-
+    $('body').on('keydown', backToMain);*/
 
     let running = new Audio("./assets/sound_effects/running_grass1_ample.mp3");
     running.loop = true;
@@ -77,7 +74,7 @@ $(document).ready(function () {
         loop: true,
         volume: 1.0
     });
- 
+
     let init = true;
     let re_init = true;
     let game_start = false;
@@ -203,7 +200,7 @@ $(document).ready(function () {
                 //alert("nice dodge!");
                 chasing_right = false;
                 sound.fade(1, 0, 1000, id2); // fade out
-            } 
+            }
             else if (chasing_left && to_right <= 6) {
                 //alert("caught from the left!");
                 game_end = true;
@@ -219,7 +216,7 @@ $(document).ready(function () {
                 sound.fade(1, 0, 1000, id1); // fade out
             }
             else if (touchdown <= 100) {
-                touchdown_b_1.play();                
+                touchdown_b_1.play();
                 game_end = true;
                 touchdown_b_2_check = false;
                 touchdown_b_3_check = false;
@@ -237,7 +234,7 @@ $(document).ready(function () {
                 }, 1000);
             }
 
-            else if (touchdown <= 300 && !chasing_right && !chasing_right_once) { 
+            else if (touchdown <= 300 && !chasing_right && !chasing_right_once) {
                 var id2 = sound.play();
                 //sound.seek(0.0, id1);
                 sound.fade(0, 1, 1000, id2); // fade in
@@ -245,8 +242,8 @@ $(document).ready(function () {
                 chasing_right = true;
                 chasing_right_once = true;
             }
-            
-            else if (touchdown <= 400 && !chasing_left && !chasing_left_once) { 
+
+            else if (touchdown <= 400 && !chasing_left && !chasing_left_once) {
                 var id1 = sound.play();
                 //sound.seek(0.0, id1);
                 sound.fade(0, 1, 1000, id1); // fade in
@@ -309,8 +306,8 @@ $(document).ready(function () {
                     sound.pause();
 
                     setTimeout(function() {
-                        re_init = true;
                         warning_max = 5;
+                        re_init = true;
                     }, 3500);
                 }, 500);
             }
