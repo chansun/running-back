@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    /*
+    
     let sound3 = "Main Page";
     const voice3 = new SpeechSynthesisUtterance(sound3);
     voice3.pitch = 1.0;
@@ -27,7 +27,7 @@ $(document).ready(function () {
             }
         }
     }
-    $('body').on('keydown', backToMain);*/
+    $('body').on('keydown', backToMain);
 
     let running = new Audio("./assets/sound_effects/running_grass1_ample.mp3");
     running.loop = true;
@@ -68,12 +68,20 @@ $(document).ready(function () {
     let touchdown_noise = new Audio("./assets/sound_effects/touchdown_noise2.mp3");
     touchdown_noise.volume = 1.0;
 
-    var sound = new Howl({
+    let sound = new Howl({
         src: ['./assets/sound_effects/chasing.mp3'],
         //autoplay: true,
-        loop: true,
+        loop: false,
         volume: 1.0
     });
+    /*
+    let sound2 = new Howl({
+        src: ['./assets/sound_effects/chasing.mp3'],
+        //autoplay: true,
+        loop: false,
+        volume: 1.0
+    });*/
+
 
     let init = true;
     let re_init = true;
@@ -97,6 +105,21 @@ $(document).ready(function () {
     let to_left = 0;
 
     function bodyHandler (e) {
+
+        /*
+        if (e.keyCode == 40) { 
+            let test = sound.play();
+            sound.pos(2, 0, -0.5, test);
+            setTimeout(function() {
+                sound.pause();
+                setTimeout(function() {
+                    sound.play();
+                }, 1000);
+                //sound.seek(1000, test);
+            }, 2000);
+        }*/
+        
+        
         if (e.keyCode == 39) { // 39 is ->
             if (!init && game_start) {
                 e.preventDefault();
@@ -159,6 +182,8 @@ $(document).ready(function () {
                         }, 2000);
                     }, 2000);
                 }, 2000);
+                let test = sound.play();
+                sound.pause();
             }
         }
     };
@@ -187,7 +212,7 @@ $(document).ready(function () {
 
     let timerId2 = setInterval(function() {
         if (game_start && tackle_start) {
-            if (chasing_right && to_left <= 6) {
+            if (chasing_right && to_left <= 8) {
                 //alert("caught from the right!");
                 game_end = true;
                     setTimeout(function() {
@@ -196,12 +221,12 @@ $(document).ready(function () {
                     }, 500);
                 chasing_right = false;
             }
-            else if (chasing_right && to_left > 6) {
+            else if (chasing_right && to_left > 8) {
                 //alert("nice dodge!");
                 chasing_right = false;
                 sound.fade(1, 0, 1000, id2); // fade out
             }
-            else if (chasing_left && to_right <= 6) {
+            else if (chasing_left && to_right <= 8) {
                 //alert("caught from the left!");
                 game_end = true;
                     setTimeout(function() {
@@ -210,7 +235,7 @@ $(document).ready(function () {
                     }, 500);
                 chasing_left = false;
             }
-            else if (chasing_left && to_right > 6) {
+            else if (chasing_left && to_right > 8) {
                 //alert("nice dodge!");
                 chasing_left = false;
                 sound.fade(1, 0, 1000, id1); // fade out
@@ -250,8 +275,9 @@ $(document).ready(function () {
                 sound.pos(-2, 0, -0.5, id1); // left speaker
                 chasing_left = true;
                 chasing_left_once = true;
+                //alert("left sound check");
             }
-            else if (count2 <= 30) {
+            else if (count2 <= 36) {
                 if (warning_max == 0) {
                     game_end = true;
                     setTimeout(function() {
@@ -260,7 +286,7 @@ $(document).ready(function () {
                         tackle1.currentTime = 0;
                     }, 1000);
                 }
-                else if (count2 <= 7) { // game over
+                else if (count2 <= 9) { // game over
                     game_end = true;
                     setTimeout(function() {
                         tackle1.play();
