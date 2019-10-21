@@ -7,7 +7,7 @@ $(document).ready(function () {
     voice3.volume = 0.3;
     voice3.rate = 1.0;
 
-    var DELAY = 300, clicks = 0, timer = null;
+    var DELAY = 200, clicks = 0, timer = null;
     function backToMain (e) {
         if (e.keyCode == 32) {
             clicks++;  //count clicks
@@ -18,12 +18,10 @@ $(document).ready(function () {
                 }, DELAY);
             }
             else {
-
                     clearTimeout(timer);                //prevent single-click action
                     location.href= 'index.html';         //perform double-click action
                     speechSynthesis.speak(voice3);      //perform double-click action
                     clicks = 0;                         //after action performed, reset counter
-
             }
         }
     }
@@ -338,5 +336,5 @@ $(document).ready(function () {
                 }, 500);
             }
         }
-    }, 3000);
+    }, 1000);
 });
