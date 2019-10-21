@@ -1,4 +1,17 @@
+
 $(document).ready(function () {
+
+    //import {Howl, Howler} from "./howler/dist/howler.js";
+
+
+    /*
+    var sound_h = new Howl({
+        src: ['track1.mp3']
+    });*/
+    
+      
+    
+
 
     window.addEventListener("scroll", preventMotion, false);
     //window.addEventListener("touchmove", preventMotion, false);
@@ -38,6 +51,10 @@ $(document).ready(function () {
         e.preventDefault();  //cancel system double-click event
     });
 
+    // Howler JS test
+
+
+
     let sound2 = "Tutorial";
     const voice2 = new SpeechSynthesisUtterance(sound2);
     voice2.pitch = 1.0;
@@ -45,6 +62,7 @@ $(document).ready(function () {
     voice2.rate = 1.0;
     function tutorialHandler (e) {
         speechSynthesis.speak(voice2);
+        //sound_h.play();
     };
     $('#tutorial').on('click', tutorialHandler);
 
