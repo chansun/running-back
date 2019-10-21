@@ -1,17 +1,4 @@
-
 $(document).ready(function () {
-
-    //import {Howl, Howler} from "./howler/dist/howler.js";
-
-
-    /*
-    var sound_h = new Howl({
-        src: ['track1.mp3']
-    });*/
-    
-      
-    
-
 
     window.addEventListener("scroll", preventMotion, false);
     //window.addEventListener("touchmove", preventMotion, false);
@@ -51,10 +38,6 @@ $(document).ready(function () {
         e.preventDefault();  //cancel system double-click event
     });
 
-    // Howler JS test
-
-
-
     let sound2 = "Tutorial";
     const voice2 = new SpeechSynthesisUtterance(sound2);
     voice2.pitch = 1.0;
@@ -81,4 +64,146 @@ $(document).ready(function () {
     voice4.pitch = 1.0;
     voice4.volume = 0.3;
     voice4.rate = 1.0;
+
+    var init = true;
+    var current = 100;
+    var latency = true;
+
+    function bodyHandler (e) {
+        if (latency) {
+            if (e.keyCode == 40) { // 40 is arrow down
+                if (init) {
+                    init = false;
+                    current = 0;
+                    speechSynthesis.speak(voice1);
+                    document.getElementById("Play_Game").style.fontSize="40px";
+                    latency = false;
+                    setTimeout(function(){ 
+                        latency = true;
+                    }, 1000);
+                }
+                else {
+                    current = (current + 1) % 3;
+                    if (current == 0) {
+                        speechSynthesis.speak(voice1);
+                        document.getElementById("Play_Game").style.fontSize="40px";
+                        document.getElementById("Tutorial").style.fontSize="30px";
+                        document.getElementById("High_Scores").style.fontSize="30px";
+                        latency = false;
+                        setTimeout(function(){ 
+                            latency = true;
+                        }, 1000);  
+                    }   
+                    else if (current == 1) {
+                        speechSynthesis.speak(voice2);
+                        document.getElementById("Play_Game").style.fontSize="30px";
+                        document.getElementById("Tutorial").style.fontSize="40px";
+                        document.getElementById("High_Scores").style.fontSize="30px";
+                        latency = false;
+                        setTimeout(function(){ 
+                            latency = true;
+                        }, 1000);  
+                    }
+                    else if (current == 2) {
+                        speechSynthesis.speak(voice3);
+                        document.getElementById("Play_Game").style.fontSize="30px";
+                        document.getElementById("Tutorial").style.fontSize="30px";
+                        document.getElementById("High_Scores").style.fontSize="40px";
+                        latency = false;
+                        setTimeout(function(){ 
+                            latency = true;
+                        }, 1000);  
+                    }
+                }
+            }
+            
+            else if (e.keyCode == 38) { // 38 is arrow up
+                if (init) {
+                    init = false;
+                    current = 0;
+                    speechSynthesis.speak(voice1);
+                    document.getElementById("Play_Game").style.fontSize="40px";
+                    latency = false;
+                    setTimeout(function(){ 
+                        latency = true;
+                    }, 1000);  
+                }
+                else if (current == 0) {
+                    current = 2;
+                    speechSynthesis.speak(voice3);
+                    document.getElementById("Play_Game").style.fontSize="30px";
+                    document.getElementById("Tutorial").style.fontSize="30px";
+                    document.getElementById("High_Scores").style.fontSize="40px";
+                    latency = false;
+                    setTimeout(function(){ 
+                        latency = true;
+                    }, 1000);  
+                }
+                else {
+                    current = current - 1;
+                    if (current == 0) {
+                        speechSynthesis.speak(voice1);
+                        document.getElementById("Play_Game").style.fontSize="40px";
+                        document.getElementById("Tutorial").style.fontSize="30px";
+                        document.getElementById("High_Scores").style.fontSize="30px";
+                        latency = false;
+                        setTimeout(function(){ 
+                            latency = true;
+                        }, 1000);  
+                    }   
+                    else if (current == 1) {
+                        speechSynthesis.speak(voice2);
+                        document.getElementById("Play_Game").style.fontSize="30px";
+                        document.getElementById("Tutorial").style.fontSize="40px";
+                        document.getElementById("High_Scores").style.fontSize="30px";
+                        latency = false;
+                        setTimeout(function(){ 
+                            latency = true;
+                        }, 1000);  
+                    }
+                    else if (current == 2) {
+                        speechSynthesis.speak(voice3);
+                        document.getElementById("Play_Game").style.fontSize="30px";
+                        document.getElementById("Tutorials").style.fontSize="30px";
+                        document.getElementById("High_Scores").style.fontSize="40px";
+                        latency = false;
+                        setTimeout(function(){ 
+                            latency = true;
+                        }, 1000);  
+                    }
+                }
+            }
+            else if (e.keyCode == 32) { // space bar
+                if (current == 0) {
+                    location.href= 'play.html';
+                    speechSynthesis.speak(voice4);
+                    latency = false;
+                    setTimeout(function(){ 
+                        latency = true;
+                    }, 1000);  
+                }
+                else if (current == 1) {
+                    speechSynthesis.speak(voice2);
+                    // narrate tutorials
+                    latency = false;
+                    setTimeout(function(){ 
+                        latency = true;
+                    }, 1000);  
+                }
+                else if (current == 2) {
+                    speechSynthesis.speak(voice3);
+                    // narrate high scores
+                    latency = false;
+                    setTimeout(function(){ 
+                        latency = true;
+                    }, 1000);  
+                }
+            }
+        }
+    };
+    $('#body').on('keydown', bodyHandler);
+
+
+
+
 });

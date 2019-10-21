@@ -1,5 +1,37 @@
 $(document).ready(function () {
 
+    let sound3 = "Main Page";
+    const voice3 = new SpeechSynthesisUtterance(sound3);
+    voice3.pitch = 1.0;
+    voice3.volume = 0.3;
+    voice3.rate = 1.0;
+
+    var DELAY = 300, clicks = 0, timer = null;
+    function backToMain (e) {
+        if (e.keyCode == 32) {
+            clicks++;  //count clicks
+            if(clicks === 1) {
+                timer = setTimeout(function() {
+                    // does nothing
+                    clicks = 0;                     //after action performed, reset counter
+                }, DELAY);
+            }
+            else {
+                
+                    clearTimeout(timer);                //prevent single-click action
+                    location.href= 'index.html';         //perform double-click action
+                    speechSynthesis.speak(voice3);      //perform double-click action
+                    clicks = 0;                         //after action performed, reset counter
+                
+            }
+        }
+    }
+
+    $('body').on('keydown', backToMain);
+
+
+
+
     let running = new Audio("./assets/sound_effects/running_grass1_ample.mp3");
     running.loop = true;
     running.playbackRate = 0.90; // 0.8 ~ 1.40
@@ -53,7 +85,7 @@ $(document).ready(function () {
     let game_end = false;
     let count = 0;
     let count2 = 0;
-    let warning_max = 3;
+    let warning_max = 5;
     let running_now = false;
     let touchdown = 500;
     let touchdown_b_2_check = false;
@@ -226,7 +258,7 @@ $(document).ready(function () {
                 if (warning_max == 0) {
                     game_end = true;
                     setTimeout(function() {
-                        warning_max = 3;
+                        warning_max = 5;
                         tackle1.play();
                         tackle1.currentTime = 0;
                     }, 1000);
@@ -278,6 +310,7 @@ $(document).ready(function () {
 
                     setTimeout(function() {
                         re_init = true;
+                        warning_max = 5;
                     }, 3500);
                 }, 500);
             }

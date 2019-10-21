@@ -13,7 +13,19 @@
             position: relative;
             margin: 0;
             padding: 0;
+            background: black;
+            /*width:900px;height:500px;*/
+            background-image:url("./imgs/img1.jpg");
+			/*background-image:url("./imgs/field2.jpeg");*/
+			background-repeat:no-repeat;
+            background-position:center;
+            /*background-size: contain;*/
+            min-height: 100%;
+            background-size: cover; 
         }
+
+
+        
         /*
         .hero-body {
             border: 3px solid #000000;
@@ -34,52 +46,56 @@
 </head>
 <body class="disable-select" id="body">
 <!-- class안에 has-text-grey is-4 is-italic is-primary is-success etc... -->
-    <section class="hero is-dark is-bold is-fullheight">
+    <section class="hero is-bold is-fullheight"> <!--is-dark -->
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="content">
-                    <h1 class="title is-italic is-4">
+                    <h1 class="title is-italic is-2" style="color: whitesmoke;">
                         Run, Running Back!
                     </h1>
-                    <h5 class="subtitle has-text-grey is-italic is-6">
-                        Your mission is run as fast as you can.
-                        Tab the screen with two fingers alternatively.
+                    <h5 class="subtitle is-italic is-4" style="color: rgb(194, 194, 194);"> <!--has-text-grey -->
+                        Let's see how far you can run!
+                        <!--Your mission is run as fast as you can.
+                        Tab the screen with two fingers alternatively.-->
                     </h5>
                 </div>
                 <div style="visibility:hidden" class="empty_space">
                     ---
                 </div>
-                <div class="notification is-success" id="play">
+                <div class="notification" id="play" style="background: rgb(135, 95, 22);"> <!--is-success-->
                     <span style="visibility:hidden">
                         ---
                     </span>
-                    <span class="has-text-weight-bold title is-4">
+                    <!--<span class="has-text-weight-bold title is-4">-->
+                    <span class="has-text-weight-bold title" id="Play_Game" style="font-size:30px;">
                         Play Game
                     </span>
-                </div>
-                <div class="notification is-success" id="tutorial">
+                </div> 
+                <div class="notification" id="tutorial" style="background: rgb(233, 217, 188);"> <!--is-success-->
                     <span style="visibility:hidden">
                         ---
                     </span>
-                    <span class="has-text-weight-bold title is-4">
+                    <!--<span class="has-text-weight-bold title is-4">-->
+                    <span class="has-text-weight-bold title" id="Tutorial" style="font-size:30px;">
                         Tutorial
                     </span>
                 </div>
-                <div class="notification is-success" id="high_scores">
+                <div class="notification" id="high_scores" style="background: rgb(135, 95, 22);"> <!--is-success-->
                     <span style="visibility:hidden">
                         ---
                     </span>
-                    <span class="has-text-weight-bold title is-4">
+                    <!--<span class="has-text-weight-bold title is-4">-->
+                    <span class="has-text-weight-bold title" id="High_Scores" style="font-size:30px;">
                         High Scores
                     </span>
                 </div>
                 <div style="visibility:hidden" class="empty_space title is-6">
                         ---
                 </div>
-                <footer class="has-text-centered has-text-weight-bold subtitle is-7">
+                <footer class="has-text-centered has-text-weight-bold subtitle is-5" style="color: whitesmoke;">
                     <small>
                         &copy; 2019 by
-                        <a href="https://cs.unc.edu">
+                        <a href="https://cs.unc.edu" style="color: whitesmoke;">
                             the Department of Computer Science at UNC-Chapel Hill
                         </a>
                     </small>

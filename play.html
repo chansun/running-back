@@ -12,7 +12,23 @@
             position: relative;
             margin: 0;
             padding: 0;
+            background: black;
+            /*width:900px;height:500px;*/
+            background-image:url("./imgs/img1.jpg");
+			/*background-image:url("./imgs/field2.jpeg");*/
+			background-repeat:no-repeat;
+            background-position:center;
+            /*background-size: contain;*/
+            min-height: 100%;
+            background-size: cover; 
         }
+        /*
+        body {
+            overflow: hidden;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }*/
         /*
         #back {
             border: 3px solid white;
@@ -43,13 +59,23 @@
     <title>runningback_play</title>
 </head>
 <body class="disable-select" id="body">
+    <!--
     <div>
         Speed: <span id="speed">0/sec</span>
     </div>
-    <section class="hero is-dark is-bold is-fullheight"> <!-- is-primary -->
+    -->
+    <!--<section class="hero is-dark is-bold is-fullheight">--> <!-- is-primary -->
+    <section class="hero is-bold is-fullheight">
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="content"  id="back">
+                    <h1 class="title is-italic is-2" style="color: whitesmoke;">
+                        Run, Running Back!
+                    </h1>
+                    <h5 class="subtitle is-italic is-4" style="color: rgb(194, 194, 194);"> <!--has-text-grey -->
+                        Let's see how far you can run!
+                    </h5>
+                    <!--
                     <h1 class="title is-italic is-4">
                         Run, Running Back!
                     </h1>
@@ -57,7 +83,14 @@
                         Your mission is run as fast as you can.
                         Tab the screen with two fingers alternatively.
                     </h5>
+                    -->
                 </div>
+                <div class="content">
+                <div class="has-text-weight-bold title is-1" style="color: rgb(135, 95, 22);">
+                    Speed: <span id="speed">0/sec</span>
+                </div>
+                </div>
+                <!--
                 <div class="content">
                     <div class="col-vertical2" id="col-left">
                         <span class="title is-5 has-text-weight-bold">
@@ -70,13 +103,14 @@
                         </span>
                     </div>
                 </div>
+                -->
                 <div style="visibility:hidden" class="empty_space title is-6">
                         ---
                 </div>
-                <footer class="has-text-centered has-text-weight-bold subtitle is-7">
+                <footer class="has-text-centered has-text-weight-bold subtitle is-5" style="color: whitesmoke;">
                     <small>
                         &copy; 2019 by
-                        <a href="https://cs.unc.edu">
+                        <a href="https://cs.unc.edu" style="color: whitesmoke;">
                             the Department of Computer Science at UNC-Chapel Hill
                         </a>
                     </small>
