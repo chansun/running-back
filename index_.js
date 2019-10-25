@@ -77,6 +77,14 @@ $(document).ready(function () {
                     current = 0;
                     speechSynthesis.speak(voice1);
                     document.getElementById("Play_Game").style.fontSize="40px";
+                    //
+                    document.getElementById("play").style.width="70%";
+                    document.getElementById("play").style.marginLeft="15%";
+                    document.getElementById("tutorial").style.width="60%";
+                    document.getElementById("tutorial").style.marginLeft="20%";
+                    document.getElementById("high_scores").style.width="60%";
+                    document.getElementById("high_scores").style.marginLeft="20%";
+                    //
                     latency = false;
                     setTimeout(function(){ 
                         latency = true;
@@ -89,6 +97,14 @@ $(document).ready(function () {
                         document.getElementById("Play_Game").style.fontSize="40px";
                         document.getElementById("Tutorial").style.fontSize="30px";
                         document.getElementById("High_Scores").style.fontSize="30px";
+                        //
+                        document.getElementById("play").style.width="70%";
+                        document.getElementById("play").style.marginLeft="15%";
+                        document.getElementById("tutorial").style.width="60%";
+                        document.getElementById("tutorial").style.marginLeft="20%";
+                        document.getElementById("high_scores").style.width="60%";
+                        document.getElementById("high_scores").style.marginLeft="20%";
+                        //
                         latency = false;
                         setTimeout(function(){ 
                             latency = true;
@@ -99,6 +115,14 @@ $(document).ready(function () {
                         document.getElementById("Play_Game").style.fontSize="30px";
                         document.getElementById("Tutorial").style.fontSize="40px";
                         document.getElementById("High_Scores").style.fontSize="30px";
+                        //
+                        document.getElementById("play").style.width="60%";
+                        document.getElementById("play").style.marginLeft="20%";
+                        document.getElementById("tutorial").style.width="70%";
+                        document.getElementById("tutorial").style.marginLeft="15%";
+                        document.getElementById("high_scores").style.width="60%";
+                        document.getElementById("high_scores").style.marginLeft="20%";
+                        //
                         latency = false;
                         setTimeout(function(){ 
                             latency = true;
@@ -109,6 +133,14 @@ $(document).ready(function () {
                         document.getElementById("Play_Game").style.fontSize="30px";
                         document.getElementById("Tutorial").style.fontSize="30px";
                         document.getElementById("High_Scores").style.fontSize="40px";
+                        //
+                        document.getElementById("play").style.width="60%";
+                        document.getElementById("play").style.marginLeft="20%";
+                        document.getElementById("tutorial").style.width="60%";
+                        document.getElementById("tutorial").style.marginLeft="20%";
+                        document.getElementById("high_scores").style.width="70%";
+                        document.getElementById("high_scores").style.marginLeft="15%";
+                        //
                         latency = false;
                         setTimeout(function(){ 
                             latency = true;
@@ -123,6 +155,14 @@ $(document).ready(function () {
                     current = 0;
                     speechSynthesis.speak(voice1);
                     document.getElementById("Play_Game").style.fontSize="40px";
+                    //
+                    document.getElementById("play").style.width="70%";
+                    document.getElementById("play").style.marginLeft="15%";
+                    document.getElementById("tutorial").style.width="60%";
+                    document.getElementById("tutorial").style.marginLeft="20%";
+                    document.getElementById("high_scores").style.width="60%";
+                    document.getElementById("high_scores").style.marginLeft="20%";
+                    //
                     latency = false;
                     setTimeout(function(){ 
                         latency = true;
@@ -134,6 +174,14 @@ $(document).ready(function () {
                     document.getElementById("Play_Game").style.fontSize="30px";
                     document.getElementById("Tutorial").style.fontSize="30px";
                     document.getElementById("High_Scores").style.fontSize="40px";
+                    //
+                    document.getElementById("play").style.width="60%";
+                    document.getElementById("play").style.marginLeft="20%";
+                    document.getElementById("tutorial").style.width="60%";
+                    document.getElementById("tutorial").style.marginLeft="20%";
+                    document.getElementById("high_scores").style.width="70%";
+                    document.getElementById("high_scores").style.marginLeft="15%";
+                    //
                     latency = false;
                     setTimeout(function(){ 
                         latency = true;
@@ -146,6 +194,14 @@ $(document).ready(function () {
                         document.getElementById("Play_Game").style.fontSize="40px";
                         document.getElementById("Tutorial").style.fontSize="30px";
                         document.getElementById("High_Scores").style.fontSize="30px";
+                        //
+                        document.getElementById("play").style.width="70%";
+                        document.getElementById("play").style.marginLeft="15%";
+                        document.getElementById("tutorial").style.width="60%";
+                        document.getElementById("tutorial").style.marginLeft="20%";
+                        document.getElementById("high_scores").style.width="60%";
+                        document.getElementById("high_scores").style.marginLeft="20%";
+                        //
                         latency = false;
                         setTimeout(function(){ 
                             latency = true;
@@ -156,6 +212,14 @@ $(document).ready(function () {
                         document.getElementById("Play_Game").style.fontSize="30px";
                         document.getElementById("Tutorial").style.fontSize="40px";
                         document.getElementById("High_Scores").style.fontSize="30px";
+                        //
+                        document.getElementById("play").style.width="60%";
+                        document.getElementById("play").style.marginLeft="20%";
+                        document.getElementById("tutorial").style.width="70%";
+                        document.getElementById("tutorial").style.marginLeft="15%";
+                        document.getElementById("high_scores").style.width="60%";
+                        document.getElementById("high_scores").style.marginLeft="20%";
+                        //
                         latency = false;
                         setTimeout(function(){ 
                             latency = true;
@@ -166,6 +230,14 @@ $(document).ready(function () {
                         document.getElementById("Play_Game").style.fontSize="30px";
                         document.getElementById("Tutorials").style.fontSize="30px";
                         document.getElementById("High_Scores").style.fontSize="40px";
+                        //
+                        document.getElementById("play").style.width="60%";
+                        document.getElementById("play").style.marginLeft="20%";
+                        document.getElementById("tutorial").style.width="60%";
+                        document.getElementById("tutorial").style.marginLeft="20%";
+                        document.getElementById("high_scores").style.width="70%";
+                        document.getElementById("high_scores").style.marginLeft="15%";
+                        //
                         latency = false;
                         setTimeout(function(){ 
                             latency = true;
