@@ -1,8 +1,8 @@
 # Run, Running Back!
+  * This is a currently ongoing project
 
 ## Introduction
   * This sound game project was initiated under the supervision of Prof. Gary Bishop. The goal of this project is provide a fun gaming experience to those with visual impairments. This sound game will be used for the Maze Day in May, an annual event that invites K-12 students with visual impairments to the CS Department of UNC-Chapel Hill to experience a wide variety of educational games.
-  * This is a currently ongoing project
 
 ## Links
   * Game published at - https://chansun.github.io/running-back/
