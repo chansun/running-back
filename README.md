@@ -18,3 +18,4 @@
   * On the play page, press the space bar to start the game.
   * After the game starts, the ball will be passed to you. Once you hear the sound, press the left and right keys to run.
   * There will be two spatial sounds in the middle of the game. When you hear the sound from the left, press the right arrow key until the sound disappear, and vice versa.
+  * After the game ends, press the space bar to restart the game.
