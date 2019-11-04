@@ -33,10 +33,11 @@ $(document).ready(function () {
         }
     }
 
+    /*
     $('#play').on('click', playHandler);
     $('#play').on('dblclick', function(e) {
         e.preventDefault();  //cancel system double-click event
-    });
+    });*/
 
     let sound2 = "Tutorial";
     const voice2 = new SpeechSynthesisUtterance(sound2);
@@ -47,7 +48,7 @@ $(document).ready(function () {
         speechSynthesis.speak(voice2);
         //sound_h.play();
     };
-    $('#tutorial').on('click', tutorialHandler);
+    /*$('#tutorial').on('click', tutorialHandler);*/
 
     let sound3 = "High Scores";
     const voice3 = new SpeechSynthesisUtterance(sound3);
@@ -57,7 +58,7 @@ $(document).ready(function () {
     function high_scoresHandler (e) {
         speechSynthesis.speak(voice3);
     };
-    $('#high_scores').on('click', high_scoresHandler);
+    /*$('#high_scores').on('click', high_scoresHandler);*/
 
     let sound4 = "Play Page";
     const voice4 = new SpeechSynthesisUtterance(sound4);

@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-    
     let sound3 = "Main Page";
     const voice3 = new SpeechSynthesisUtterance(sound3);
     voice3.pitch = 1.0;
@@ -90,17 +89,20 @@ $(document).ready(function () {
     let count2 = 0;
     let warning_max = 5;
     let running_now = false;
-    let touchdown = 500;
+    let touchdown = 450;
     let touchdown_b_2_check = false;
     let touchdown_b_3_check = false;
 
     let chasing_left = false;
-    let chasing_left_once = false;
+    let once = false;
     let to_right = 0;
 
     let chasing_right = false;
-    let chasing_right_once = false;
+    let twice = false;
     let to_left = 0;
+
+    var num;
+
 
     function bodyHandler (e) {
 
@@ -257,23 +259,38 @@ $(document).ready(function () {
                 }, 1000);
             }
 
-            else if (touchdown <= 300 && !chasing_right && !chasing_right_once) {
+            else if (touchdown <= 300 && !twice) {
                 var id2 = sound.play();
                 //sound.seek(0.0, id1);
                 sound.fade(0, 1, 1000, id2); // fade in
-                sound.pos(2, 0, -0.5, id2); // right speaker
-                chasing_right = true;
-                chasing_right_once = true;
+                num = Math.floor(Math.random() * 10);
+                if (num % 2 == 0) {
+                    sound.pos(-2, 0, -0.5, id1); // left speaker
+                    chasing_left = true;
+                    twice = true;
+                }
+                else {
+                    sound.pos(2, 0, -0.5, id2); // right speaker
+                    chasing_right = true;
+                    twice = true;
+                }
             }
 
-            else if (touchdown <= 400 && !chasing_left && !chasing_left_once) {
+            else if (touchdown <= 400 && !once) {
                 var id1 = sound.play();
                 //sound.seek(0.0, id1);
                 sound.fade(0, 1, 1000, id1); // fade in
-                sound.pos(-2, 0, -0.5, id1); // left speaker
-                chasing_left = true;
-                chasing_left_once = true;
-                //alert("left sound check");
+                num = Math.floor(Math.random() * 10);
+                if (num % 2 == 0) {
+                    sound.pos(-2, 0, -0.5, id1); // left speaker
+                    chasing_left = true;
+                    once = true;
+                }
+                else {
+                    sound.pos(2, 0, -0.5, id2); // right speaker
+                    chasing_right = true;
+                    once = true;
+                }
             }
             else if (count2 <= 36) {
                 if (warning_max == 0) {
@@ -320,12 +337,12 @@ $(document).ready(function () {
                     touchdown = 500;
 
                     chasing_left = false;
-                    chasing_left_once = false;
+                    once = false;
                     to_right = 0;
                     sound.pause();
 
                     chasing_right = false;
-                    chasing_right_once = false;
+                    twice = false;
                     to_left = 0;
                     sound.pause();
 
