@@ -1,5 +1,87 @@
 $(document).ready(function () {
 
+    function right_arrow(id) {
+        let num = 0;
+        let increase = true;
+        let effect_right = setInterval(function() {
+            if (increase) {
+                num = num % 100;
+                opacity = num/100;
+                let content = `<canvas class="right_arrow_effect" width="210" height="90" style="opacity: ${opacity};"></canvas>`;
+                $(id).html(content);
+                num = num + 4;
+                if (num >= 96) {
+                    increase = false;
+                }
+            }
+            else {
+                num = num % 100;
+                opacity = num/100;
+                let content = `<canvas class="right_arrow_effect" width="210" height="90" style="opacity: ${opacity};"></canvas>`;
+                $(id).html(content);
+                num = num - 4;
+                if (num <= 0) {
+                    increase = true;
+                }
+            }
+        }, 20);
+        return effect_right;
+    };
+    
+    function left_arrow(id) {
+        let num2 = 0;
+        let increase2 = true;
+        let effect_left = setInterval(function() {
+        if (increase2) {
+            num2 = num2 % 100;
+            opacity = num2/100;
+            let content = `<canvas class="left_arrow_effect" width="210" height="90" style="opacity: ${opacity};"></canvas>`;
+            $(id).html(content);
+            num2 = num2 + 4;
+            if (num2 >= 96) {
+                increase2 = false;
+            }
+        }
+        else {
+            num2 = num2 % 100;
+            opacity = num2/100;
+            let content = `<canvas class="left_arrow_effect" width="210" height="90" style="opacity: ${opacity};"></canvas>`;
+            $(id).html(content);
+            num2 = num2 - 4;
+            if (num2 <= 0) {
+                increase2 = true;
+            }
+        }
+        }, 20);
+        return effect_left;
+    };
+
+    function text_animation(text) {
+        let content = `<h1 class="tlt" style="font-size: 100px; color:whitesmoke;">${text}</h1>`;
+        $('#text').html(content);
+        let temp = `<div class="empty_space title is-6" id="void" style="visibility:hidden">---</div>`;
+        $('.tlt').textillate({
+            minDisplayTime: 100,
+            //initialDelay: 1000,
+            in: 
+                { effect: 'bounceIn',
+                  sync: true,
+                  delay: 100,
+                },
+            out: 
+                { effect: 'bounceOut', 
+                  sync: true,
+                  delay: 100,
+                  callback: function () {
+                      $('.tlt').detach();
+                      $('#text').append(temp);
+                      //asdfghjklkjhgf; // purposely break the function
+                  },
+                },
+            loop: true,
+        });
+    };
+
     let sound3 = "Main Page";
     const voice3 = new SpeechSynthesisUtterance(sound3);
     voice3.pitch = 1.0;
@@ -8,7 +90,7 @@ $(document).ready(function () {
 
     var DELAY = 200, clicks = 0, timer = null;
     function backToMain (e) {
-        if (e.keyCode == 32) {
+        if (e.keyCode == 32) { // 32 is space bar
             clicks++;  //count clicks
             if(clicks === 1) {
                 timer = setTimeout(function() {
@@ -17,10 +99,10 @@ $(document).ready(function () {
                 }, DELAY);
             }
             else {
-                    clearTimeout(timer);                //prevent single-click action
-                    location.href= 'index.html';         //perform double-click action
-                    speechSynthesis.speak(voice3);      //perform double-click action
-                    clicks = 0;                         //after action performed, reset counter
+                clearTimeout(timer);                //prevent single-click action
+                location.href= 'index.html';         //perform double-click action
+                speechSynthesis.speak(voice3);      //perform double-click action
+                clicks = 0;                         //after action performed, reset counter
             }
         }
     }
@@ -71,15 +153,7 @@ $(document).ready(function () {
         loop: false,
         volume: 1.0
     });
-    /*
-    let sound2 = new Howl({
-        src: ['./assets/sound_effects/chasing.mp3'],
-        //autoplay: true,
-        loop: false,
-        volume: 1.0
-    });*/
-
-
+    
     let init = true;
     let re_init = true;
     let game_start = false;
@@ -100,27 +174,14 @@ $(document).ready(function () {
     let chasing_right = false;
     let twice = false;
     let to_left = 0;
-
     var num;
-
+    var center_effect_right;
+    var center_effect_left;
+    var effect_right;
+    var effect_left;
 
     function bodyHandler (e) {
-
-        /*
-        if (e.keyCode == 40) { 
-            let test = sound.play();
-            sound.pos(2, 0, -0.5, test);
-            setTimeout(function() {
-                sound.pause();
-                setTimeout(function() {
-                    sound.play();
-                }, 1000);
-                //sound.seek(1000, test);
-            }, 2000);
-        }*/
-        
-        
-        if (e.keyCode == 39) { // 39 is ->
+        if (e.keyCode == 39) { // 39 is ->, right arrow
             if (!init && game_start) {
                 e.preventDefault();
                 count += 1;
@@ -143,8 +204,7 @@ $(document).ready(function () {
                 }
             }
         }
-
-        else if (e.keyCode == 37) { // 37 is <-
+        else if (e.keyCode == 37) { // 37 is <-, left arrow
             if (!init && game_start) {
                 e.preventDefault();
                 count += 1;
@@ -175,6 +235,9 @@ $(document).ready(function () {
                 re_init = false;
                 setTimeout(function() {
                     look_out.play();
+                    setTimeout(function() {
+                        text_animation("Go!");                
+                    }, 1500);
                     setTimeout(function() {
                         game_start = true;
                         setTimeout(function() {
@@ -212,33 +275,54 @@ $(document).ready(function () {
 
     let timerId2 = setInterval(function() {
         if (game_start && tackle_start) {
+
             if (chasing_right && to_left <= 8) {
                 //alert("caught from the right!");
                 game_end = true;
-                    setTimeout(function() {
-                        tackle1.play();
-                        tackle1.currentTime = 0;
-                    }, 500);
+                setTimeout(function() {
+                    tackle1.play();
+                    tackle1.currentTime = 0;
+                    //----------------------------------------------
+                    text_animation("Tackled!");
+                    clearInterval(effect_left);
+                    $('.left_arrow_effect').detach();
+                    //----------------------------------------------
+                }, 500);
                 chasing_right = false;
             }
             else if (chasing_right && to_left > 8) {
                 //alert("nice dodge!");
                 chasing_right = false;
                 sound.fade(1, 0, 1000, id2); // fade out
+                //----------------------------------------------
+                clearInterval(effect_left);
+                $('.left_arrow_effect').detach();
+                text_animation("Nice Dodge!");
+                //----------------------------------------------
             }
             else if (chasing_left && to_right <= 8) {
                 //alert("caught from the left!");
                 game_end = true;
-                    setTimeout(function() {
-                        tackle1.play();
-                        tackle1.currentTime = 0;
-                    }, 500);
+                setTimeout(function() {
+                    tackle1.play();
+                    tackle1.currentTime = 0;
+                    //----------------------------------------------
+                    text_animation("Tackled!");
+                    clearInterval(effect_right);
+                    $('.right_arrow_effect').detach();
+                    //----------------------------------------------
+                }, 500);
                 chasing_left = false;
             }
             else if (chasing_left && to_right > 8) {
                 //alert("nice dodge!");
                 chasing_left = false;
                 sound.fade(1, 0, 1000, id1); // fade out
+                //----------------------------------------------
+                clearInterval(effect_right);
+                $('.right_arrow_effect').detach();
+                text_animation("Nice Dodge!");
+                //----------------------------------------------
             }
             else if (touchdown <= 100) {
                 touchdown_b_1.play();
@@ -246,14 +330,23 @@ $(document).ready(function () {
                 touchdown_b_2_check = false;
                 touchdown_b_3_check = false;
                 chasing_check = false;
+                //----------------------------------------------
+                text_animation("Touch Down!");
+                //----------------------------------------------
             }
             else if (touchdown <= 140 && !touchdown_b_2_check) {
                 touchdown_b_2.play();
                 touchdown_b_2_check = true;
+                //----------------------------------------------
+                text_animation("10 Yards Left!");
+                //----------------------------------------------
             }
             else if (touchdown <= 180 && !touchdown_b_3_check) {
                 touchdown_noise.play();
                 setTimeout(function() {
+                    //----------------------------------------------
+                    text_animation("Almost there!");
+                    //----------------------------------------------
                     touchdown_b_3.play();
                     touchdown_b_3_check = true;
                 }, 1000);
@@ -268,11 +361,17 @@ $(document).ready(function () {
                     sound.pos(-2, 0, -0.5, id1); // left speaker
                     chasing_left = true;
                     twice = true;
+                    //----------------------------------------------
+                    effect_right = right_arrow("#arrow_right");
+                    //----------------------------------------------
                 }
                 else {
                     sound.pos(2, 0, -0.5, id2); // right speaker
                     chasing_right = true;
                     twice = true;
+                    //----------------------------------------------
+                    effect_left = left_arrow("#arrow_left");
+                    //----------------------------------------------
                 }
             }
 
@@ -285,20 +384,29 @@ $(document).ready(function () {
                     sound.pos(-2, 0, -0.5, id1); // left speaker
                     chasing_left = true;
                     once = true;
+                    //----------------------------------------------
+                    effect_right = right_arrow("#arrow_right");
+                    //----------------------------------------------
                 }
                 else {
                     sound.pos(2, 0, -0.5, id2); // right speaker
                     chasing_right = true;
                     once = true;
+                    //----------------------------------------------
+                    effect_left = left_arrow("#arrow_left");
+                    //----------------------------------------------
                 }
             }
             else if (count2 <= 36) {
-                if (warning_max == 0) {
+                if (warning_max == 0) { // game over
                     game_end = true;
                     setTimeout(function() {
                         warning_max = 5;
                         tackle1.play();
                         tackle1.currentTime = 0;
+                        //----------------------------------------------
+                        text_animation("Tackled!");
+                        //----------------------------------------------
                     }, 1000);
                 }
                 else if (count2 <= 9) { // game over
@@ -306,12 +414,18 @@ $(document).ready(function () {
                     setTimeout(function() {
                         tackle1.play();
                         tackle1.currentTime = 0;
+                        //----------------------------------------------
+                        text_animation("Tackled!");
+                        //----------------------------------------------
                     }, 1000);
                 }
-                else {
+                else { // go_faster!
                     go_faster.play();
                     go_faster.currentTime = 0.0;
                     warning_max = warning_max - 1;
+                    //----------------------------------------------
+                    text_animation("Go Faster!");
+                    //----------------------------------------------
                 }
             }
             count2 = 0;
