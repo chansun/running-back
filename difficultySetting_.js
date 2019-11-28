@@ -6,8 +6,6 @@ function preventMotion(event) {
     event.stopPropagation();
 }
 
-
-
 function voice_make(sentence) {
     const voice = new SpeechSynthesisUtterance(sentence);
     voice.pitch = 1.0;
@@ -27,6 +25,13 @@ function wait_call() {
     }, latency);  
 }
 
+function bake_cookie(difficulty, mins) {
+    document.cookie = `difficulty=${difficulty}`;
+    var d = new Date();
+    d.setTime(d.getTime() + (mins*60*1000)); // 10 mins (600000 ms) cookie duration
+    document.cookie = "expires="+ d.toUTCString(); // GMT base. Greenwich time zone.
+}
+
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -43,13 +48,28 @@ function getCookie(cname) {
     return "";
 }
 
-const voice1 = voice_make("Play Game");
-const voice1_2 = voice_make("Play Page");
+function border_update_by_difficulty() {
+    // default difficulty = "easy"
+    $("#hard").css("border", "");
+    $("#easy").css("border", "10px solid white");
+    var difficulty = getCookie("difficulty");
+    if (difficulty == "hard") { // default value
+        $("#hard").css("border", "10px solid white");
+        $("#easy").css("border", "");
+    }
+    else if (difficulty == "easy") {
+        $("#hard").css("border", "");
+        $("#easy").css("border", "10px solid white");
+    }
+}
 
-const voice2 = voice_make("Tutorial");
-const voice2_2 = voice_make("Tutorial Page");
+const voice1 = voice_make("Hard Mode");
+const voice1_2 = voice_make("Hard Mode Selected");
 
-const voice3 = voice_make("Settings");
+const voice2 = voice_make("Easy Mode");
+const voice2_2 = voice_make("Easy Mode Selected");
+
+const voice3 = voice_make("Back to the Settings Page");
 const voice3_2 = voice_make("Settings Page");
 
 function volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2) {
@@ -82,15 +102,30 @@ function volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2) {
 
 
 
+// function css_hard_select() {
+//     $("#hard").css("border", "10px solid white");
+//     $("#easy").css("border", "");
+//     bake_cookie("hard", 10);
+// }
+
+// function css_easy_select() {
+//     $("#hard").css("border", "");
+//     $("#easy").css("border", "10px solid white");
+//     bake_cookie("easy", 10);
+// }
+
 $(document).ready(function () {
-    
+
     var x = document.cookie; // comment this out later
     console.log(x); // comment this out later
 
     volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2);
-    
+    border_update_by_difficulty();
+
+    // const voice1 = voice_make("Hard Mode");
+    // const voice1_2 = voice_make("Hard Mode Selected");
     var DELAY = 300, clicks = 0, timer = null;
-    function playHandler (e) {
+    function hardModeHandler (e) {
         clicks++;  //count clicks
         if(clicks === 1) { // Single-click occurs if click is done once
             timer = setTimeout(function() {
@@ -102,15 +137,19 @@ $(document).ready(function () {
         else { // Double-click occurs if click is done twice within 0.2 sec.
             clearTimeout(timer);                //prevent single-click action
             speechSynthesis.speak(voice1_2);    //perform double-click action
-            setTimeout(function() {             //perform double-click action
-                location.href= 'play.html';     //perform double-click action
-            }, page_delay);
+            
+            bake_cookie("hard", 10);
+            border_update_by_difficulty();
+
             clicks = 0;                         //after action performed, reset counter
+            wait_call();
         }
     }
-   
+    
+    // const voice2 = voice_make("Easy Mode");
+    // const voice2_2 = voice_make("Easy Mode Selected");
     var DELAY2 = 300, clicks2 = 0, timer2 = null;
-    function tutorialHandler (e) {
+    function easyModeHandler (e) {
         //speechSynthesis.speak(voice2);
         clicks2++;  //count clicks
         if(clicks2 === 1) { // Single-click occurs if click is done once
@@ -123,15 +162,21 @@ $(document).ready(function () {
         else {                                  // Double-click occurs if click is done twice within 0.2 sec.
             clearTimeout(timer2);               //prevent single-click action
             speechSynthesis.speak(voice2_2);    //perform double-click action
-            setTimeout(function() {             //perform double-click action
-                location.href= 'tutorial.html';     //perform double-click action
-            }, page_delay);
+            
+            bake_cookie("easy", 10);
+            border_update_by_difficulty();
+
             clicks2 = 0;                        //after action performed, reset counter
+            wait_call();
         }
     }
+    
+    
 
+    // const voice3 = voice_make("Back to the Settings Page");
+    // const voice3_2 = voice_make("Settings Page");
     var DELAY3 = 300, clicks3 = 0, timer3 = null;
-    function settingsHandler (e) {
+    function backHandler (e) {
         clicks3++;  //count clicks
         if(clicks3 === 1) { // Single-click occurs if click is done once
             timer3 = setTimeout(function() {
@@ -154,56 +199,56 @@ $(document).ready(function () {
         init = false;
         current = 0;
         speechSynthesis.speak(voice1);
-        document.getElementById("Play_Game").style.fontSize="40px";
+        document.getElementById("Hard_Mode").style.fontSize="40px";
         //
-        document.getElementById("play").style.width="70%";
-        document.getElementById("play").style.marginLeft="15%";
-        document.getElementById("tutorial").style.width="60%";
-        document.getElementById("tutorial").style.marginLeft="20%";
-        document.getElementById("settings").style.width="60%";
-        document.getElementById("settings").style.marginLeft="20%";
+        document.getElementById("hard").style.width="70%";
+        document.getElementById("hard").style.marginLeft="15%";
+        document.getElementById("easy").style.width="60%";
+        document.getElementById("easy").style.marginLeft="20%";
+        document.getElementById("back").style.width="60%";
+        document.getElementById("back").style.marginLeft="20%";
     }
 
-    function on_play_game_bar() {
+    function on_hard_mode_bar() {
         speechSynthesis.speak(voice1);
-        document.getElementById("Play_Game").style.fontSize="40px";
-        document.getElementById("Tutorial").style.fontSize="30px";
-        document.getElementById("Settings").style.fontSize="30px";
+        document.getElementById("Hard_Mode").style.fontSize="40px";
+        document.getElementById("Easy_Mode").style.fontSize="30px";
+        document.getElementById("Back").style.fontSize="30px";
         //
-        document.getElementById("play").style.width="70%";
-        document.getElementById("play").style.marginLeft="15%";
-        document.getElementById("tutorial").style.width="60%";
-        document.getElementById("tutorial").style.marginLeft="20%";
-        document.getElementById("settings").style.width="60%";
-        document.getElementById("settings").style.marginLeft="20%";
+        document.getElementById("hard").style.width="70%";
+        document.getElementById("hard").style.marginLeft="15%";
+        document.getElementById("easy").style.width="60%";
+        document.getElementById("easy").style.marginLeft="20%";
+        document.getElementById("back").style.width="60%";
+        document.getElementById("back").style.marginLeft="20%";
     }
 
-    function on_tutorial_bar() {
+    function on_easy_mode_bar() {
         speechSynthesis.speak(voice2);
-        document.getElementById("Play_Game").style.fontSize="30px";
-        document.getElementById("Tutorial").style.fontSize="40px";
-        document.getElementById("Settings").style.fontSize="30px";
+        document.getElementById("Hard_Mode").style.fontSize="30px";
+        document.getElementById("Easy_Mode").style.fontSize="40px";
+        document.getElementById("Back").style.fontSize="30px";
         //
-        document.getElementById("play").style.width="60%";
-        document.getElementById("play").style.marginLeft="20%";
-        document.getElementById("tutorial").style.width="70%";
-        document.getElementById("tutorial").style.marginLeft="15%";
-        document.getElementById("settings").style.width="60%";
-        document.getElementById("settings").style.marginLeft="20%";
+        document.getElementById("hard").style.width="60%";
+        document.getElementById("hard").style.marginLeft="20%";
+        document.getElementById("easy").style.width="70%";
+        document.getElementById("easy").style.marginLeft="15%";
+        document.getElementById("back").style.width="60%";
+        document.getElementById("back").style.marginLeft="20%";
     }
 
-    function on_settings_bar() {
+    function on_back_bar() {
         speechSynthesis.speak(voice3);
-        document.getElementById("Play_Game").style.fontSize="30px";
-        document.getElementById("Tutorial").style.fontSize="30px";
-        document.getElementById("Settings").style.fontSize="40px";
+        document.getElementById("Hard_Mode").style.fontSize="30px";
+        document.getElementById("Easy_Mode").style.fontSize="30px";
+        document.getElementById("Back").style.fontSize="40px";
         //
-        document.getElementById("play").style.width="60%";
-        document.getElementById("play").style.marginLeft="20%";
-        document.getElementById("tutorial").style.width="60%";
-        document.getElementById("tutorial").style.marginLeft="20%";
-        document.getElementById("settings").style.width="70%";
-        document.getElementById("settings").style.marginLeft="15%";
+        document.getElementById("hard").style.width="60%";
+        document.getElementById("hard").style.marginLeft="20%";
+        document.getElementById("easy").style.width="60%";
+        document.getElementById("easy").style.marginLeft="20%";
+        document.getElementById("back").style.width="70%";
+        document.getElementById("back").style.marginLeft="15%";
     }
 
     function bodyHandler (e) {
@@ -216,15 +261,15 @@ $(document).ready(function () {
                 else {
                     current = (current + 1) % 3;
                     if (current == 0) { // On Play Game bar
-                        on_play_game_bar();
+                        on_hard_mode_bar();
                         wait_call();
                     }   
                     else if (current == 1) { // On Tutorial bar
-                        on_tutorial_bar();
+                        on_easy_mode_bar();
                         wait_call();
                     }
                     else if (current == 2) { // On Settings bar
-                        on_settings_bar();
+                        on_back_bar();
                         wait_call();
                     }
                 }
@@ -237,35 +282,38 @@ $(document).ready(function () {
                 }
                 else if (current == 0) {
                     current = 2; // On Settings bar
-                    on_settings_bar();
+                    on_back_bar();
                     wait_call();
                 }
                 else {
                     current = current - 1;
                     if (current == 0) { // On Play Game bar
-                        on_play_game_bar();
+                        on_hard_mode_bar();
                         wait_call();
                     }   
                     else if (current == 1) { // On Tutorial bar
-                        on_tutorial_bar();
+                        on_easy_mode_bar();
                         wait_call();
                     }
                     else if (current == 2) { // On Settings bar
-                        on_settings_bar();
+                        on_back_bar();
                         wait_call();
                     }
                 }
             }
             else if (e.keyCode == 32) { // space bar
                 if (current == 0) {
-                    playHandler(e);  // voice1 = play game; voice1_2 = play page
-
+                    hardModeHandler(e);
+                    //var x = document.cookie; // comment this out later
+                    //console.log(x);          // comment this out later
                 }
                 else if (current == 1) {
-                    tutorialHandler(e);  // voice2 = tutorial; voice2_2 = tutorial page
+                    easyModeHandler(e); 
+                    //var x = document.cookie; // comment this out later
+                    //console.log(x);          // comment this out later
                 }
                 else if (current == 2) {
-                    settingsHandler(e); // voice3 = tutorial; voice3_2 = tutorial page
+                    backHandler(e);
                 }
             }
         }
