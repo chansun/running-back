@@ -98,6 +98,15 @@ function voice_make(sentence) {
 }
 
 const voice3 = voice_make("Main Page");
+const voice4 = voice_make("Press space bar to start the game. Press space bar twice to go back to the main page.");
+let wait2 = true;
+function wait_call2(latency_given) {
+    wait = false;
+    setTimeout(function(){ 
+        wait = true;
+    }, latency_given);  
+}
+
 
 function getCookie(cname) {
     var name = cname + "=";
@@ -134,6 +143,7 @@ function volume_change() {
         touchdown_noise.volume = 1.0;
         sound.volume(0.8);
         voice3.volume = 0.3;
+        voice4.volume = 0.3;
     }
     else if (volume == "volume2") {
         running.volume = 0.4 * 0.7;
@@ -151,6 +161,7 @@ function volume_change() {
         touchdown_noise.volume = 1.0 * 0.7;
         sound.volume(0.8 * 0.7);
         voice3.volume = 0.3 * 0.7;
+        voice4.volume = 0.3 * 0.7;
     }
     else if (volume == "volume1") {
         running.volume = 0.4 * 0.4;
@@ -168,6 +179,7 @@ function volume_change() {
         touchdown_noise.volume = 1.0 * 0.4;
         sound.volume(0.8 * 0.4);
         voice3.volume = 0.3 * 0.4;
+        voice4.volume = 0.3 * 0.4;
     }
 }
 
@@ -245,6 +257,16 @@ function play_tackle1_or_tackle2() {
 
 
 $(document).ready(function () {
+
+    
+
+    $('body').on('keydown', function(e){
+        if (!(game_start) && (re_init)) {
+            if ((e.keyCode != 32) && (e.keyCode != 37) && (e.keyCode != 39)) {
+                speechSynthesis.speak(voice4); 
+            }
+        }
+    });
 
     var x = document.cookie; // comment this out later
     console.log(x); // comment this out later

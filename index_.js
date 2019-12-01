@@ -27,6 +27,13 @@ function wait_call() {
     }, latency);  
 }
 
+function wait_call2(latency_given) {
+    wait = false;
+    setTimeout(function(){ 
+        wait = true;
+    }, latency_given);  
+}
+
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -52,7 +59,9 @@ const voice2_2 = voice_make("Tutorial Page");
 const voice3 = voice_make("Settings");
 const voice3_2 = voice_make("Settings Page");
 
-function volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2) {
+const voice4 = voice_make("Press up or down arrow key to select the menu. Press space bar twice to move to the corresponding page.");
+
+function volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2, voice4) {
     var volume = getCookie("volume");
     if (volume == "volume3") { // default value
         voice1.volume = 0.3;
@@ -61,6 +70,7 @@ function volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2) {
         voice2_2.volume = 0.3;
         voice3.volume = 0.3;
         voice3_2.volume = 0.3;
+        voice4.volume = 0.3;
     }
     else if (volume == "volume2") {
         voice1.volume = 0.3 * 0.7;
@@ -69,6 +79,7 @@ function volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2) {
         voice2_2.volume = 0.3 * 0.7;
         voice3.volume = 0.3 * 0.7;
         voice3_2.volume = 0.3 * 0.7;
+        voice4.volume = 0.3 * 0.7;
     }
     else if (volume == "volume1") {
         voice1.volume = 0.3 * 0.4;
@@ -77,6 +88,7 @@ function volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2) {
         voice2_2.volume = 0.3 * 0.4;
         voice3.volume = 0.3 * 0.4;
         voice3_2.volume = 0.3 * 0.4;
+        voice4.volume = 0.3 * 0.4;
     }
 }
 
@@ -87,7 +99,7 @@ $(document).ready(function () {
     var x = document.cookie; // comment this out later
     console.log(x); // comment this out later
 
-    volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2);
+    volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2, voice4);
     
     var DELAY = 300, clicks = 0, timer = null;
     function playHandler (e) {
@@ -267,6 +279,10 @@ $(document).ready(function () {
                 else if (current == 2) {
                     settingsHandler(e); // voice3 = tutorial; voice3_2 = tutorial page
                 }
+            }
+            else {
+                speechSynthesis.speak(voice4);
+                wait_call2(6000);
             }
         }
     };

@@ -25,6 +25,13 @@ function wait_call() {
     }, latency);  
 }
 
+function wait_call2(latency_given) {
+    wait = false;
+    setTimeout(function(){ 
+        wait = true;
+    }, latency_given);  
+}
+
 function bake_cookie(difficulty, mins) {
     document.cookie = `difficulty=${difficulty}`;
     var d = new Date();
@@ -72,7 +79,9 @@ const voice2_2 = voice_make("Easy Mode Selected");
 const voice3 = voice_make("Back to the Settings Page");
 const voice3_2 = voice_make("Settings Page");
 
-function volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2) {
+const voice4 = voice_make("Press up or down arrow key to hear the mode. Press space bar twice to select the mode.");
+
+function volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2, voice4) {
     var volume = getCookie("volume");
     if (volume == "volume3") { // default value
         voice1.volume = 0.3;
@@ -81,6 +90,7 @@ function volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2) {
         voice2_2.volume = 0.3;
         voice3.volume = 0.3;
         voice3_2.volume = 0.3;
+        voice4.volume = 0.3;
     }
     else if (volume == "volume2") {
         voice1.volume = 0.3 * 0.7;
@@ -89,6 +99,8 @@ function volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2) {
         voice2_2.volume = 0.3 * 0.7;
         voice3.volume = 0.3 * 0.7;
         voice3_2.volume = 0.3 * 0.7;
+        voice4.volume = 0.3 * 0.7;
+
     }
     else if (volume == "volume1") {
         voice1.volume = 0.3 * 0.4;
@@ -97,6 +109,7 @@ function volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2) {
         voice2_2.volume = 0.3 * 0.4;
         voice3.volume = 0.3 * 0.4;
         voice3_2.volume = 0.3 * 0.4;
+        voice4.volume = 0.3 * 0.4;
     }
 }
 
@@ -119,7 +132,7 @@ $(document).ready(function () {
     var x = document.cookie; // comment this out later
     console.log(x); // comment this out later
 
-    volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2);
+    volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2, voice4);
     border_update_by_difficulty();
 
     // const voice1 = voice_make("Hard Mode");
@@ -315,6 +328,10 @@ $(document).ready(function () {
                 else if (current == 2) {
                     backHandler(e);
                 }
+            }
+            else {
+                speechSynthesis.speak(voice4);
+                wait_call2(6000);
             }
         }
     };

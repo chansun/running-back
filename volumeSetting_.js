@@ -34,6 +34,8 @@ const back_2 = voice_make("Settings Page");
 
 const settingPage = voice_make("Settings Page");
 
+let voice4 = voice_make("Press up or down arrow key to hear the volume. Press space bar twice to select the volume.");
+
 function speak_helper(current) {
     if (current == 4) {
         speechSynthesis.speak(volume3);
@@ -142,6 +144,13 @@ function wait_call() {
     }, latency);  
 }
 
+function wait_call2(latency_given) {
+    wait = false;
+    setTimeout(function(){ 
+        wait = true;
+    }, latency_given);  
+}
+
 function up(current) {
     if (current == 4) {
         return 1;
@@ -192,17 +201,20 @@ function back_volume_change() {
         back.volume = 0.3;
         back_2.volume = 0.3;
         settingPage.volume = 0.3;
+        voice4.volume = 0.3;
     }
     else if (volume == "volume2") {
         back.volume = (0.3) * 0.7;
         back_2.volume = (0.3) * 0.7;
         settingPage.volume = 0.3 * 0.7;
+        voice4.volume = 0.3 * 0.7;
 
     }
     else if (volume == "volume1") {
         back.volume = (0.3) * 0.4;
         back_2.volume = (0.3) * 0.4;
         settingPage.volume = 0.3 * 0.4;
+        voice4.volume = 0.3 * 0.4;
     }
 }
 
@@ -349,11 +361,15 @@ $(document).ready(function () {
     function bodyHandler (e) {
 
         if (wait) {
-            if (init) {
+            if (init && (e.keyCode == 40 || e.keyCode == 38)) {
                 speak_helper(current);
                 css_helper(current);
                 wait_call();
                 init = false;
+            }
+            else if (init && (e.keyCode != 40 || e.keyCode != 38)) {
+                speechSynthesis.speak(voice4);
+                wait_call2(6000);
             }
             else {
                 if (e.keyCode == 40) { // 40 is arrow down
@@ -381,6 +397,10 @@ $(document).ready(function () {
                     else if (current == 1) {
                         backHandler(e); 
                     }
+                }
+                else {
+                    speechSynthesis.speak(voice4);
+                    wait_call2(6000);
                 }
             }
             //var x = document.cookie; // comment this out later
