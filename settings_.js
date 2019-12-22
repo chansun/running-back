@@ -14,7 +14,7 @@ function voice_make(sentence) {
     return voice;
 }
 
-var init = true, current = 100, wait = true, latency = 1000;
+var init = true, current = 100, wait = true, latency = 1200;
 var page_delay = 0;
 //var page_delay = 1800;
 
@@ -31,7 +31,6 @@ function wait_call2(latency_given) {
         wait = true;
     }, latency_given);  
 }
-
 
 function getCookie(cname) {
     var name = cname + "=";
@@ -92,7 +91,6 @@ function volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2, voi
 }
 
 $(document).ready(function () {
-
     var x = document.cookie; // comment this out later
     console.log(x); // comment this out later
     
@@ -100,7 +98,7 @@ $(document).ready(function () {
 
     // const voice1 = voice_make("Volume Setting");
     // const voice1_2 = voice_make("Volume Setting Page");
-    var DELAY = 300, clicks = 0, timer = null;
+    var DELAY = 500, clicks = 0, timer = null;
     function volumeHandler (e) {
         clicks++;  //count clicks
         if(clicks === 1) { // Single-click occurs if click is done once
@@ -122,7 +120,7 @@ $(document).ready(function () {
     
     // const voice2 = voice_make("Difficulty Setting");
     // const voice2_2 = voice_make("Difficulty Setting Page");
-    var DELAY2 = 300, clicks2 = 0, timer2 = null;
+    var DELAY2 = 500, clicks2 = 0, timer2 = null;
     function difficultyHandler (e) {
         //speechSynthesis.speak(voice2);
         clicks2++;  //count clicks
@@ -145,7 +143,7 @@ $(document).ready(function () {
 
     // const voice3 = voice_make("Back to the Main Page");
     // const voice3_2 = voice_make("Main Page");
-    var DELAY3 = 300, clicks3 = 0, timer3 = null;
+    var DELAY3 = 500, clicks3 = 0, timer3 = null;
     function backHandler (e) {
         clicks3++;  //count clicks
         if(clicks3 === 1) { // Single-click occurs if click is done once
@@ -243,8 +241,7 @@ $(document).ready(function () {
                         wait_call();
                     }
                 }
-            }
-            
+            }  
             else if (e.keyCode == 38) { // 38 is arrow up
                 if (init) {
                     init_operation();
@@ -272,14 +269,14 @@ $(document).ready(function () {
                 }
             }
             else if (e.keyCode == 32) { // space bar
-                if (current == 0) {
-                    volumeHandler(e);  // voice1 = play game; voice1_2 = play page
+                if (current == 0) { // On Play Game bar
+                    volumeHandler(e);
                 }
-                else if (current == 1) {
-                    difficultyHandler(e);  // voice2 = tutorial; voice2_2 = tutorial page
+                else if (current == 1) { // On Tutorial bar
+                    difficultyHandler(e);  
                 }
-                else if (current == 2) {
-                    backHandler(e); // voice3 = tutorial; voice3_2 = tutorial page
+                else if (current == 2) { // On Settings bar
+                    backHandler(e); 
                 }
             }
             else {
@@ -288,7 +285,5 @@ $(document).ready(function () {
             }
         }
     };
-    
     $('#body').on('keydown', bodyHandler);
-
 });

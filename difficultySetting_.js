@@ -113,8 +113,6 @@ function volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2, voi
     }
 }
 
-
-
 // function css_hard_select() {
 //     $("#hard").css("border", "10px solid white");
 //     $("#easy").css("border", "");
@@ -128,7 +126,6 @@ function volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2, voi
 // }
 
 $(document).ready(function () {
-
     var x = document.cookie; // comment this out later
     console.log(x); // comment this out later
 
@@ -137,7 +134,7 @@ $(document).ready(function () {
 
     // const voice1 = voice_make("Hard Mode");
     // const voice1_2 = voice_make("Hard Mode Selected");
-    var DELAY = 300, clicks = 0, timer = null;
+    var DELAY = 500, clicks = 0, timer = null;
     function hardModeHandler (e) {
         clicks++;  //count clicks
         if(clicks === 1) { // Single-click occurs if click is done once
@@ -161,7 +158,7 @@ $(document).ready(function () {
     
     // const voice2 = voice_make("Easy Mode");
     // const voice2_2 = voice_make("Easy Mode Selected");
-    var DELAY2 = 300, clicks2 = 0, timer2 = null;
+    var DELAY2 = 500, clicks2 = 0, timer2 = null;
     function easyModeHandler (e) {
         //speechSynthesis.speak(voice2);
         clicks2++;  //count clicks
@@ -183,12 +180,10 @@ $(document).ready(function () {
             wait_call();
         }
     }
-    
-    
 
     // const voice3 = voice_make("Back to the Settings Page");
     // const voice3_2 = voice_make("Settings Page");
-    var DELAY3 = 300, clicks3 = 0, timer3 = null;
+    var DELAY3 = 500, clicks3 = 0, timer3 = null;
     function backHandler (e) {
         clicks3++;  //count clicks
         if(clicks3 === 1) { // Single-click occurs if click is done once
@@ -273,44 +268,45 @@ $(document).ready(function () {
                 }
                 else {
                     current = (current + 1) % 3;
-                    if (current == 0) { // On Play Game bar
+                    if (current == 0) { 
                         on_hard_mode_bar();
                         wait_call();
                     }   
-                    else if (current == 1) { // On Tutorial bar
+                    else if (current == 1) {
                         on_easy_mode_bar();
                         wait_call();
                     }
-                    else if (current == 2) { // On Settings bar
+                    else if (current == 2) {
                         on_back_bar();
-                        wait_call();
+                        //wait_call();
+                        wait_call2(1400);
                     }
                 }
             }
-            
             else if (e.keyCode == 38) { // 38 is arrow up
                 if (init) {
                     init_operation();
                     wait_call();
                 }
                 else if (current == 0) {
-                    current = 2; // On Settings bar
+                    current = 2;
                     on_back_bar();
                     wait_call();
                 }
                 else {
                     current = current - 1;
-                    if (current == 0) { // On Play Game bar
+                    if (current == 0) {
                         on_hard_mode_bar();
                         wait_call();
                     }   
-                    else if (current == 1) { // On Tutorial bar
+                    else if (current == 1) {
                         on_easy_mode_bar();
                         wait_call();
                     }
-                    else if (current == 2) { // On Settings bar
+                    else if (current == 2) {
                         on_back_bar();
-                        wait_call();
+                        //wait_call();
+                        wait_call2(1400);
                     }
                 }
             }
@@ -335,7 +331,5 @@ $(document).ready(function () {
             }
         }
     };
-    
     $('#body').on('keydown', bodyHandler);
-
 });

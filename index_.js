@@ -6,8 +6,6 @@ function preventMotion(event) {
     event.stopPropagation();
 }
 
-
-
 function voice_make(sentence) {
     const voice = new SpeechSynthesisUtterance(sentence);
     voice.pitch = 1.0;
@@ -53,8 +51,31 @@ function getCookie(cname) {
 const voice1 = voice_make("Play Game");
 const voice1_2 = voice_make("Play Page");
 
-const voice2 = voice_make("Tutorial");
-const voice2_2 = voice_make("Tutorial Page");
+const voice2 = voice_make("How to Play");
+let instruction = `In this game, you are becoming a runningback in a football game, 
+
+and your mission is to run as fast as you can until you hit the end zone. 
+
+In order to play the game, go to Play Page and press the space bar. 
+
+As soon as the game starts, you will get passed the ball. 
+
+Once you get the ball, tab both left and right arrow keys to run. 
+
+If you don't run fast enough, you will be caught and get tackled.
+
+In the middle of the game, there would be opponents chasing you from either left or right side. 
+
+To dodge them, you have to tab the arrow key of the opposite direction from where the opponent is coming. 
+
+After you dodge the opponenet, tab both left and right arrow keys to continue running. 
+
+When the game ends, if you want to play again, press the space bar. Otherwise, press the space bar twice to go back to the main page.`
+const voice2_2 = voice_make(instruction);
+voice2_2.rate = 1.0;
+
+//const voice2 = voice_make("Tutorial");
+//const voice2_2 = voice_make("Tutorial Page");
 
 const voice3 = voice_make("Settings");
 const voice3_2 = voice_make("Settings Page");
@@ -92,16 +113,13 @@ function volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2, voi
     }
 }
 
-
-
 $(document).ready(function () {
-    
     var x = document.cookie; // comment this out later
     console.log(x); // comment this out later
 
     volume_change(voice1, voice1_2, voice2, voice2_2, voice3, voice3_2, voice4);
     
-    var DELAY = 300, clicks = 0, timer = null;
+    var DELAY = 500, clicks = 0, timer = null;
     function playHandler (e) {
         clicks++;  //count clicks
         if(clicks === 1) { // Single-click occurs if click is done once
@@ -121,7 +139,7 @@ $(document).ready(function () {
         }
     }
    
-    var DELAY2 = 300, clicks2 = 0, timer2 = null;
+    var DELAY2 = 500, clicks2 = 0, timer2 = null;
     function tutorialHandler (e) {
         //speechSynthesis.speak(voice2);
         clicks2++;  //count clicks
@@ -135,14 +153,17 @@ $(document).ready(function () {
         else {                                  // Double-click occurs if click is done twice within 0.2 sec.
             clearTimeout(timer2);               //prevent single-click action
             speechSynthesis.speak(voice2_2);    //perform double-click action
+            /*
             setTimeout(function() {             //perform double-click action
                 location.href= 'tutorial.html';     //perform double-click action
             }, page_delay);
+            */
+            wait_call2(48000);
             clicks2 = 0;                        //after action performed, reset counter
         }
     }
 
-    var DELAY3 = 300, clicks3 = 0, timer3 = null;
+    var DELAY3 = 500, clicks3 = 0, timer3 = null;
     function settingsHandler (e) {
         clicks3++;  //count clicks
         if(clicks3 === 1) { // Single-click occurs if click is done once
@@ -241,7 +262,6 @@ $(document).ready(function () {
                     }
                 }
             }
-            
             else if (e.keyCode == 38) { // 38 is arrow up
                 if (init) {
                     init_operation();
@@ -286,7 +306,5 @@ $(document).ready(function () {
             }
         }
     };
-    
     $('#body').on('keydown', bodyHandler);
-
 });

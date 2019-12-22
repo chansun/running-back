@@ -6,11 +6,14 @@
 4. cheering = 0.1
 5. lookout = 1.0
 6. tackle1 = 1.0
+6-2. tackle2 = 1.0
 7. go_faster = 1.0
+7-2. lets_go_man = 1.0
 8. touchdownb1 = 1.0
 9. touchdownb2 = 1.0
 10. touchdownb3 = 1.0
 11. touchdown_noise = 1.0
+12. swoosh = 1.0
 * voice = 0.3
 
 Multiplication rate:
@@ -64,6 +67,9 @@ touchdown_b_3.volume = 1.0;
 let touchdown_noise = new Audio("./assets/sound_effects/touchdown_noise2.mp3");
 touchdown_noise.volume = 1.0;
 
+let swoosh = new Audio("./assets/sound_effects/swoosh.mp3");
+swoosh.volume = 1.0;
+
 let sound = new Howl({
     src: ['./assets/sound_effects/chasing.mp3'],
     //autoplay: true,
@@ -87,8 +93,6 @@ var id1, id2;
 
 var go_faster_init = true;
 
-
-
 function voice_make(sentence) {
     const voice = new SpeechSynthesisUtterance(sentence);
     voice.pitch = 1.0;
@@ -107,7 +111,6 @@ function wait_call2(latency_given) {
     }, latency_given);  
 }
 
-
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -123,7 +126,6 @@ function getCookie(cname) {
     }
     return "";
 }
-
 
 function volume_change() {
     var volume = getCookie("volume");
@@ -144,6 +146,7 @@ function volume_change() {
         sound.volume(0.8);
         voice3.volume = 0.3;
         voice4.volume = 0.3;
+        swoosh.volume = 0.8;
     }
     else if (volume == "volume2") {
         running.volume = 0.4 * 0.7;
@@ -162,6 +165,7 @@ function volume_change() {
         sound.volume(0.8 * 0.7);
         voice3.volume = 0.3 * 0.7;
         voice4.volume = 0.3 * 0.7;
+        swoosh.volume = 0.8 * 0.7;
     }
     else if (volume == "volume1") {
         running.volume = 0.4 * 0.4;
@@ -180,9 +184,9 @@ function volume_change() {
         sound.volume(0.8 * 0.4);
         voice3.volume = 0.3 * 0.4;
         voice4.volume = 0.3 * 0.4;
+        swoosh.volume = 0.8 * 0.4;
     }
 }
-
 
 ///
 var touchdown;
@@ -224,8 +228,6 @@ function difficulty_change() {
     }
 }
 
-
-
 function play_go_faster_or_lets_go_man() {
     num = Math.floor(Math.random() * 10);
     if (num >= 4) {
@@ -249,17 +251,8 @@ function play_tackle1_or_tackle2() {
         tackle2.currentTime = 0;
     }
 }
- 
-
-
-
-
-
 
 $(document).ready(function () {
-
-    
-
     $('body').on('keydown', function(e){
         if (!(game_start) && (re_init)) {
             if ((e.keyCode != 32) && (e.keyCode != 37) && (e.keyCode != 39)) {
@@ -298,8 +291,6 @@ $(document).ready(function () {
         console.log("expires: " + expires);
     }
     ///
-
-
 
     function right_arrow(id) {
         let num = 0;
@@ -385,16 +376,10 @@ $(document).ready(function () {
         return effect_both;
     };
 
-    
     let effect_both = both_arrow("#arrow_both");
     clearInterval(effect_both);
     $('.both_left_arrow_effect').detach();
     $('.both_right_arrow_effect').detach();
-
-
-
-
-
 
     function text_animation(text) {
         let content = `<h1 class="tlt" style="font-size: 100px; color:whitesmoke;">${text}</h1>`;
@@ -421,7 +406,6 @@ $(document).ready(function () {
             loop: true,
         });
     };
-
 
     var DELAY = 200, clicks = 0, timer = null;
     function backToMain (e) {
@@ -541,7 +525,6 @@ $(document).ready(function () {
 
     let timerId2 = setInterval(function() {
         if (game_start && tackle_start) {
-
             if (chasing_right && to_left <= 8) {
                 //alert("caught from the right!");
                 game_end = true;
@@ -560,7 +543,8 @@ $(document).ready(function () {
             else if (chasing_right && to_left > 8) {
                 //alert("nice dodge!");
                 chasing_right = false;
-                sound.fade((sound.volume()+0.5), 0, 500, id2); // fade out
+                swoosh.play();
+                sound.fade((sound.volume()), 0, 500, id2); // fade out
                 //sound.pause(id2);
                 //----------------------------------------------
                 clearInterval(effect_left);
@@ -590,7 +574,8 @@ $(document).ready(function () {
             else if (chasing_left && to_right > 8) {
                 //alert("nice dodge!");
                 chasing_left = false;
-                sound.fade((sound.volume()+0.5), 0, 500, id1); // fade out
+                swoosh.play();
+                sound.fade((sound.volume()), 0, 500, id1); // fade out
                 //sound.pause(id1);
                 //----------------------------------------------
                 clearInterval(effect_right);
@@ -632,8 +617,6 @@ $(document).ready(function () {
             }
             else if (touchdown <= touchdown_threshold3 && !touchdown_b_3_check) {
                 touchdown_noise.play();
-
-
                 clearInterval(effect_both);
                 $('.both_left_arrow_effect').detach();
                 $('.both_right_arrow_effect').detach();
@@ -641,7 +624,6 @@ $(document).ready(function () {
                 setTimeout(function() {
                     effect_both = both_arrow("#arrow_both");
                 }, 2300);
-
                 touchdown_b_3.play();
                 touchdown_b_3_check = true;
                 /*

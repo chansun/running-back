@@ -133,7 +133,7 @@ function css_volume_select(current) {
     }
 }
 
-var init = true, wait = true, latency = 1000, current = 4;
+var init = true, wait = true, latency = 1200, current = 4;
 var page_delay = 0;
 //var page_delay = 1800;
 
@@ -176,7 +176,6 @@ function bake_cookie(volume, mins) {
     document.cookie = "expires="+ d.toUTCString(); // GMT base. Greenwich time zone.
 }
 
-
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -192,8 +191,6 @@ function getCookie(cname) {
     }
     return "";
 }
-
-
 
 function back_volume_change() {
     var volume = getCookie("volume");
@@ -217,7 +214,6 @@ function back_volume_change() {
         voice4.volume = 0.3 * 0.4;
     }
 }
-
 
 function border_update_by_volume() {
     // default volume = "volume3"
@@ -243,16 +239,14 @@ function border_update_by_volume() {
     }
 }
 
-
 $(document).ready(function () {
-
     var x = document.cookie; // comment this out later
     console.log(x); // comment this out later
 
     border_update_by_volume();
     back_volume_change();
 
-    var DELAY3 = 300, clicks3 = 0, timer3 = null;
+    var DELAY3 = 500, clicks3 = 0, timer3 = null;
     function volume3Handler (e) {
         clicks3++;  //count clicks
         if(clicks3 === 1) { // Single-click occurs if click is done once
@@ -276,10 +270,7 @@ $(document).ready(function () {
         }
     }
     
-    
-
-
-    var DELAY2 = 300, clicks2 = 0, timer2 = null;
+    var DELAY2 = 500, clicks2 = 0, timer2 = null;
     function volume2Handler (e) {
         clicks2++;  //count clicks
         if(clicks2 === 1) { // Single-click occurs if click is done once
@@ -303,8 +294,7 @@ $(document).ready(function () {
         }
     }
 
-
-    var DELAY1 = 300, clicks1 = 0, timer1 = null;
+    var DELAY1 = 500, clicks1 = 0, timer1 = null;
     function volume1Handler (e) {
         clicks1++;  //count clicks
         if(clicks1 === 1) { // Single-click occurs if click is done once
@@ -328,12 +318,8 @@ $(document).ready(function () {
         }
     }
 
-
-
-
-
     //const settingPage = voice_make("Settings Page");
-    var DELAY = 300, clicks = 0, timer = null;
+    var DELAY = 500, clicks = 0, timer = null;
     function backHandler (e) {
         clicks++;  //count clicks
         if(clicks === 1) { // Single-click occurs if click is done once
@@ -355,11 +341,7 @@ $(document).ready(function () {
         }
     }
 
-    
-
-
     function bodyHandler (e) {
-
         if (wait) {
             if (init && (e.keyCode == 40 || e.keyCode == 38)) {
                 speak_helper(current);
@@ -408,5 +390,4 @@ $(document).ready(function () {
         }
     };
     $('#body').on('keydown', bodyHandler);
-
 });
