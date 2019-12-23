@@ -77,6 +77,7 @@ let sound = new Howl({
     volume: 1.0
 });
     
+let man_button1 = true, man_button2 = true;
 let init = true, re_init = true;
 let game_start = false, tackle_start = false, game_end = false;
 let count = 0, count2 = 0;
@@ -103,7 +104,8 @@ function voice_make(sentence) {
 
 const voice3 = voice_make("Main Page");
 const voice4 = voice_make("Press space bar to start the game. Press space bar twice to go back to the main page.");
-let wait2 = true;
+
+let wait = true;
 function wait_call2(latency_given) {
     wait = false;
     setTimeout(function(){ 
@@ -255,8 +257,11 @@ function play_tackle1_or_tackle2() {
 $(document).ready(function () {
     $('body').on('keydown', function(e){
         if (!(game_start) && (re_init)) {
-            if ((e.keyCode != 32) && (e.keyCode != 37) && (e.keyCode != 39)) {
-                speechSynthesis.speak(voice4); 
+            if (wait) { 
+                if ((e.keyCode != 32) && (e.keyCode != 37) && (e.keyCode != 39)) {
+                    speechSynthesis.speak(voice4);
+                    wait_call2(5500);
+                }
             }
         }
     });
@@ -352,26 +357,26 @@ $(document).ready(function () {
         let num2 = 0;
         let increase2 = true;
         let effect_both = setInterval(function() {
-        if (increase2) {
-            num2 = num2 % 100;
-            opacity = num2/100;
-            let content = `<canvas class="both_left_arrow_effect" width="160" height="80" style="opacity: ${opacity};"></canvas><canvas class="both_right_arrow_effect" width="160" height="80" style="opacity: ${opacity};"></canvas>`;
-            $(id).html(content);
-            num2 = num2 + 4;
-            if (num2 >= 96) {
-                increase2 = false;
+            if (increase2) {
+                num2 = num2 % 100;
+                opacity = num2/100;
+                let content = `<canvas class="both_left_arrow_effect" width="160" height="80" style="opacity: ${opacity};"></canvas><canvas class="both_right_arrow_effect" width="160" height="80" style="opacity: ${opacity};"></canvas>`;
+                $(id).html(content);
+                num2 = num2 + 4;
+                if (num2 >= 96) {
+                    increase2 = false;
+                }
             }
-        }
-        else {
-            num2 = num2 % 100;
-            opacity = num2/100;
-            let content = `<canvas class="both_left_arrow_effect" width="160" height="80" style="opacity: ${opacity};"></canvas><canvas class="both_right_arrow_effect" width="160" height="80" style="opacity: ${opacity};"></canvas>`;
-            $(id).html(content);
-            num2 = num2 - 4;
-            if (num2 <= 0) {
-                increase2 = true;
+            else {
+                num2 = num2 % 100;
+                opacity = num2/100;
+                let content = `<canvas class="both_left_arrow_effect" width="160" height="80" style="opacity: ${opacity};"></canvas><canvas class="both_right_arrow_effect" width="160" height="80" style="opacity: ${opacity};"></canvas>`;
+                $(id).html(content);
+                num2 = num2 - 4;
+                if (num2 <= 0) {
+                    increase2 = true;
+                }
             }
-        }
         }, 20);
         return effect_both;
     };
@@ -475,28 +480,30 @@ $(document).ready(function () {
             }
         }
         else if (e.keyCode == 32) { // space bar
-            if (init && re_init) {
-                bgm.play();
-                cheering.play();
-                init = false;
-                re_init = false;
-                setTimeout(function() {
-                    look_out.play();
+            if (wait) {
+                if (init && re_init) {
+                    bgm.play();
+                    cheering.play();
+                    init = false;
+                    re_init = false;
                     setTimeout(function() {
-                        text_animation("Go!");
+                        look_out.play();
                         setTimeout(function() {
-                            effect_both = both_arrow("#arrow_both");
-                        }, 2300);            
-                    }, 1500);
-                    setTimeout(function() {
-                        game_start = true;
+                            text_animation("Go!");
+                            setTimeout(function() {
+                                effect_both = both_arrow("#arrow_both");
+                            }, 2300);            
+                        }, 1500);
                         setTimeout(function() {
-                            tackle_start = true;
+                            game_start = true;
+                            setTimeout(function() {
+                                tackle_start = true;
+                            }, 2000);
                         }, 2000);
                     }, 2000);
-                }, 2000);
-                let test = sound.play();
-                sound.pause();
+                    let test = sound.play();
+                    sound.pause();
+                }
             }
         }
     };
