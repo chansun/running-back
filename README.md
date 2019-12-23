@@ -25,6 +25,11 @@
   * In the middle of the game, there would be opponents chasing you from either the left or right side. To dodege them, press the arrow key of the opposite direction from where the opponent is coming. If you succeed in dodging the opponents, press the left and right arrow keys again to continue running.
   * If you are close to the end zone, the announcers will start speaking so that you can know whether you are getting close to the end zone.
 
+## Technologies used
+  * Language: HTML, CSS, and JavaScript
+  * CSS Framework: Bulma
+  * JavaScript Library: jQuery, howler.js, textillate.js, and letterings.js
+
 ## Links
   * Game published at - https://chansun.github.io/running-back/
   * More information about Maze Day - https://cs.unc.edu/outreach/maze-day/
