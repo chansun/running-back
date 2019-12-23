@@ -52,9 +52,9 @@ const voice1 = voice_make("Play Game");
 const voice1_2 = voice_make("Play Page");
 
 const voice2 = voice_make("How to Play");
-let instruction = `In this game, you are becoming a runningback in a football game, 
+let instruction = `In this game, you are becoming a runningback of a football game, 
 
-and your mission is to run as fast as you can until you hit the end zone. 
+and your mission is to run as fast as you can to get to the end zone. 
 
 In order to play the game, go to Play Page and press the space bar. 
 
