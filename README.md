@@ -1,14 +1,17 @@
 # Run, Running Back!
-  * In this game, you are becomming a runningback. Your mission is to run as fast as you can and get to the end zone.
+  * In this game, you are becomming a runningback of a football game. Your mission is to run as fast as you can and get to the end zone.
 
 ## Introduction
   * Run, Runningback is an audio web game designed and developed for the K-12 students in North Carolina. The goal of this game is provide a fun gaming experience to them, including even those with visual impairments. The game is going be used for Maze Day an annual event hosted by the Computer Science department of UNC-Chapl Hill.
 
 ## Screenshots
 <div>
-<img src="screenshots/main_page.png" width="33.3%"></img>
-<img src="screenshots/play_page_spatial.png" width="33.3%"></img>
-<img src="screenshots/play_page_tackled.png" width="33.3%"></img>
+<img src="screenshots/main_page.png" width="45%"></img>
+<img src="screenshots/play_page_go.png" width="45%"></img>
+<img src="screenshots/play_page_spatial.png" width="45%"></img>
+<img src="screenshots/play_page_tackled.png" width="45%"></img>
+<img src="screenshots/play_page_touchdown.png" width="45%"></img>
+
 </div>
 
 ## How to navigate
