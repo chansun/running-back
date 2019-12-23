@@ -9,9 +9,7 @@
 <img src="screenshots/main_page.png" width="45%"></img>
 <img src="screenshots/play_page_go.png" width="45%"></img>
 <img src="screenshots/play_page_spatial.png" width="45%"></img>
-<img src="screenshots/play_page_tackled.png" width="45%"></img>
 <img src="screenshots/play_page_touchdown.png" width="45%"></img>
-
 </div>
 
 ## How to navigate
