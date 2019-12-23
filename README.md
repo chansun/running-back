@@ -6,9 +6,11 @@
 
 ## Screenshots
 <div>
-<img src="screenshots/main_page.png" width="45%"></img>
+<img src="screenshots/main_page2.png" width="45%"></img>
 <img src="screenshots/play_page_go.png" width="45%"></img>
+<img src="screenshots/play_page_run.png" width="45%"></img>
 <img src="screenshots/play_page_spatial.png" width="45%"></img>
+<img src="screenshots/play_page_go_faster.png" width="45%"></img>
 <img src="screenshots/play_page_touchdown.png" width="45%"></img>
 </div>
 
